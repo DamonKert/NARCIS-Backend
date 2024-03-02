@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5ZlBnUVLumY8hostoSKHOnN+6HOiCO9QCtOmrdKbrVpvFK0IeCwl/mv2qHoVYJE29m7DEs4WyvQ5cJptKfkHYg==",
+  "dgSpecHash": "i0yriJIq1ZsclhOxcfYahpfTR1SljEu6DDwftauErRWt1Jowe5+pOEICeGfKGKwvcprRCsnVOGSBEZi3OpiRnQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\PC\\source\\repos\\NarcisKH\\NarcisKH\\NarcisKH.csproj",
+  "projectFilePath": "E:\\Coding\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -8946,11 +8946,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\source\\repos\\NarcisKH\\NarcisKH\\NarcisKH.csproj",
+      "projectUniqueName": "E:\\Coding\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj",
       "projectName": "NarcisKH",
-      "projectPath": "C:\\Users\\PC\\source\\repos\\NarcisKH\\NarcisKH\\NarcisKH.csproj",
+      "projectPath": "E:\\Coding\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\source\\repos\\NarcisKH\\NarcisKH\\obj\\",
+      "outputPath": "E:\\Coding\\NARCIS-Backend\\NarcisKH\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

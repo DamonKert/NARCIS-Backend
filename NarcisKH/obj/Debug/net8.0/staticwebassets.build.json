@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tbFYN0rSry1kmPSxixLi2pv+/rMFjqjjeTgBfLJvZA0=",
+  "Hash": "s3x0Yl5DvomRYf+RKFgsYkyRNIciK9C7pb199r+bFjQ=",
   "Source": "NarcisKH",
   "BasePath": "_content/NarcisKH",
   "Mode": "Default",
@@ -47,10 +47,10 @@
       "OriginalItemSpec": "C:\\Users\\PC\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.2\\staticwebassets\\QuickGrid.razor.js"
     },
     {
-      "Identity": "C:\\Users\\PC\\source\\repos\\NarcisKH\\NarcisKH\\obj\\Debug\\net8.0\\scopedcss\\bundle\\NarcisKH.styles.css",
+      "Identity": "E:\\Coding\\NARCIS-Backend\\NarcisKH\\obj\\Debug\\net8.0\\scopedcss\\bundle\\NarcisKH.styles.css",
       "SourceId": "NarcisKH",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\PC\\source\\repos\\NarcisKH\\NarcisKH\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "E:\\Coding\\NARCIS-Backend\\NarcisKH\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/NarcisKH",
       "RelativePath": "NarcisKH.styles.css",
       "AssetKind": "All",
@@ -63,7 +63,7 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\PC\\source\\repos\\NarcisKH\\NarcisKH\\obj\\Debug\\net8.0\\scopedcss\\bundle\\NarcisKH.styles.css"
+      "OriginalItemSpec": "E:\\Coding\\NARCIS-Backend\\NarcisKH\\obj\\Debug\\net8.0\\scopedcss\\bundle\\NarcisKH.styles.css"
     }
   ]
 }
