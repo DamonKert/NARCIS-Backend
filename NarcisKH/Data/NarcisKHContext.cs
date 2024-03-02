@@ -170,18 +170,71 @@ namespace NarcisKH.Data
                 }
             };
             modelBuilder.Entity<User>().HasData(users);
-            List<Status> statuses = new List<Status>
+            List<Category> categories = new List<Category>
             {
-                new Status
+                new Category
                 {
                     Id = 1,
-                    OrderStatus = orderStatuses[0],
-                    PaymentStatus = paymentStatuses[0],
-                    PaymentMethod = paymentMethods[0],
-                    DeliveryStatus = deliveryStatuses[0],
-                }
+                    Name = "Top & T-shirt",
+                    ParentId = null
+                },
+                new Category
+                {
+                    Id = 2,
+                    Name = "Shirt & Blouse",
+                    ParentId = null
+                },
+                new Category
+                {
+                    Id = 3,
+                    Name = "One-Piece & Dress",
+                    ParentId = null
+                },
+                new Category
+                {
+                    Id = 4,
+                    Name = "Pants & Shorts",
+                    ParentId = null
+                },
+                new Category
+                {
+                    Id = 5,
+                    Name = "Skirt",
+                    ParentId = null
+                },
+                new Category
+                {
+                    Id = 6,
+                    Name = "Mini-Midi",
+                    ParentId = 3
+                },
+                new Category
+                {
+                    Id = 7,
+                    Name = "Long-Maxi",
+                    ParentId = 3
+                },
+                new Category
+                {
+                    Id = 8,
+                    Name = "Jumpsuit",
+                    ParentId = 3
+                },
+
             };
-            modelBuilder.Entity<Status>().HasData(statuses);
+            modelBuilder.Entity<Category>().HasData(categories);
+            //List<Status> statuses = new List<Status>
+            //{
+            //    new Status
+            //    {
+            //        Id = 1,
+            //        OrderStatus = orderStatuses[0],
+            //        PaymentStatus = paymentStatuses[0],
+            //        PaymentMethod = paymentMethods[0],
+            //        DeliveryStatus = deliveryStatuses[0],
+            //    }
+            //};
+            //modelBuilder.Entity<Status>().HasData(statuses);
             //List<Order> orders = new List<Order>
             //{
             //    new Order
@@ -211,6 +264,7 @@ namespace NarcisKH.Data
         public DbSet<NarcisKH.Models.PaymentMethod> PaymentMethod { get; set; } = default!;
         public DbSet<NarcisKH.Models.DeliveryStatus> DeliveryStatus { get; set; } = default!;
         public DbSet<NarcisKH.Models.Role> Role { get; set; } = default!;
+        public DbSet<NarcisKH.Models.Category> Category { get; set; } = default!;
 
     }
 }
