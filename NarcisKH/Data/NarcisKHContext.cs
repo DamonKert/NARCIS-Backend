@@ -220,9 +220,50 @@ namespace NarcisKH.Data
                     Name = "Jumpsuit",
                     ParentId = 3
                 },
+                new Category
+                {
+                    Id = 9,
+                    Name = "Trousers",
+                    ParentId = 4
+                },
+                new Category
+                {
+                    Id = 10,
+                    Name = "Shorts",
+                    ParentId = 4
+                },
 
             };
             modelBuilder.Entity<Category>().HasData(categories);
+            List<Size> sizes = new List<Size>
+            {
+                new Size
+                {
+                    Id = 1,
+                    Name = "S"
+                },
+                new Size
+                {
+                    Id = 2,
+                    Name = "M"
+                },
+                new Size
+                {
+                    Id = 3,
+                    Name = "L"
+                },
+                new Size
+                {
+                    Id = 4,
+                    Name = "XL"
+                },
+                new Size
+                {
+                    Id = 5,
+                    Name = "XXL"
+                }
+            };
+            modelBuilder.Entity<Size>().HasData(sizes);
             //List<Status> statuses = new List<Status>
             //{
             //    new Status
@@ -265,6 +306,10 @@ namespace NarcisKH.Data
         public DbSet<NarcisKH.Models.DeliveryStatus> DeliveryStatus { get; set; } = default!;
         public DbSet<NarcisKH.Models.Role> Role { get; set; } = default!;
         public DbSet<NarcisKH.Models.Category> Category { get; set; } = default!;
+        public DbSet<NarcisKH.Models.Cloth> Cloth { get; set; } = default!;
+        public DbSet<NarcisKH.Models.Size> Size { get; set; } = default!;
+        public DbSet<NarcisKH.Models.SizeAndClothQuantity> SizeAndClothQuantity { get; set; } = default!;
+
 
     }
 }
