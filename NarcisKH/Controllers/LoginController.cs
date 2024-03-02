@@ -51,7 +51,7 @@ namespace NarcisKH.Controllers
         }
         private User AuthenticateUser(User login)
         {
-           var User =_context.User.Include(x => x.Role).FirstOrDefault(x => x.Username.ToLower() == login.Username.ToLower() && x.Password == login.Password);
+           var User =_context.Users.Include(x => x.Role).FirstOrDefault(x => x.Username.ToLower() == login.Username.ToLower() && x.Password == login.Password);
             return User;
         }
         private LoginResponse Generate(User? user)

@@ -27,7 +27,7 @@ namespace NarcisKH.Controllers
         public async Task<ActionResult<IEnumerable<Cloth>>> GetCloth()
         {
             List<ClothDTO> clothDTOs = new List<ClothDTO>();
-            var cloths = await _context.Cloth.Include(x=>x.Category).Include(x=>x.Sizes).Include(x=>x.SizeAndClothQuantities).ToListAsync();
+            var cloths = await _context.Clothes.Include(x=>x.Category).Include(x=>x.Sizes).Include(x=>x.SizeAndClothQuantities).ToListAsync();
             foreach (var cloth in cloths)
             {
                 ClothDTO clothDTO = new ClothDTO
@@ -61,7 +61,7 @@ namespace NarcisKH.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Cloth>> GetCloth(int id)
         {
-            var cloth = await _context.Cloth.FindAsync(id);
+            var cloth = await _context.Clothes.FindAsync(id);
 
             if (cloth == null)
             {
@@ -74,7 +74,7 @@ namespace NarcisKH.Controllers
         public async Task<ActionResult> GetCartItems(List<int> clothIds)
         {
             List<ClothDTO> clothDTOs = new List<ClothDTO>();
-            var cloths = await _context.Cloth.Include(x => x.Category).Include(x => x.Sizes).Include(x => x.SizeAndClothQuantities).Where(x=>clothIds.Contains(x.Id)).ToListAsync();
+            var cloths = await _context.Clothes.Include(x => x.Category).Include(x => x.Sizes).Include(x => x.SizeAndClothQuantities).Where(x=>clothIds.Contains(x.Id)).ToListAsync();
             foreach (var cloth in cloths)
             {
                 ClothDTO clothDTO = new ClothDTO
@@ -101,40 +101,129 @@ namespace NarcisKH.Controllers
                 clothDTO.Sizes = sizeAndQuantityDTOs;
                 clothDTOs.Add(clothDTO);
             }
-            return Ok(clothDTOs);
+            if(clothDTOs.Count == 0)
+            {
+                var notFoundResponse = new
+                {
+                    StatusCode = 404,
+                    Message = "Clothes not found"
+                };
+                return NotFound(notFoundResponse);
+            }
+            var successResponse = new
+            {
+                StatusCode = 200,
+                Message = "Success",
+                Data = clothDTOs
+            };
+            return Ok(successResponse);
         }
         [HttpPost("GetClothByCategoryId")]
-        public async Task<ActionResult> GetClothByCategoryId(int categoryId)
+        public async Task<ActionResult> GetClothByCategoryId(GetClothByIdsRequest request)
         {
-            List<ClothDTO> clothDTOs = new List<ClothDTO>();
-            var cloths = await _context.Cloth.Include(x => x.Category).Include(x => x.Sizes).Include(x => x.SizeAndClothQuantities).Where(x => x.CategoryId == categoryId).ToListAsync();
-            foreach (var cloth in cloths)
+            var category = _context.Categories.FirstOrDefault(x => x.Id == request.CategoryId);
+            if (category == null)
             {
-                ClothDTO clothDTO = new ClothDTO
+                var notFoundResponse = new
                 {
-                    Id = cloth.Id,
-                    Name = cloth.Name,
-                    Description = cloth.Description,
-                    Price = cloth.Price,
-                    Category = cloth.Category,
-                    ImagePaths = cloth.ImagePaths,
-                    Discount = cloth.Discount
+                    StatusCode = 404,
+                    Message = "Categories not found"
                 };
-                List<SizeAndQuantityDTO> sizeAndQuantityDTOs = new List<SizeAndQuantityDTO>();
-                foreach (var sizeAndQuantity in cloth.Sizes)
-                {
-                    SizeAndQuantityDTO sizeAndQuantityDTO = new SizeAndQuantityDTO
-                    {
-                        Id = sizeAndQuantity.Id,
-                        Name = sizeAndQuantity.Name,
-                        Quantity = cloth.SizeAndClothQuantities.FirstOrDefault(x => x.SizeId == sizeAndQuantity.Id).Quantity
-                    };
-                    sizeAndQuantityDTOs.Add(sizeAndQuantityDTO);
-                }
-                clothDTO.Sizes = sizeAndQuantityDTOs;
-                clothDTOs.Add(clothDTO);
+                return NotFound(notFoundResponse);
             }
-            return Ok(clothDTOs);
+            else
+            {
+                var cloths = await _context.Clothes.Include(x => x.Category).Include(x => x.Sizes).Include(x => x.SizeAndClothQuantities).Where(x => x.CategoryId == request.CategoryId).ToListAsync();
+                if (request.Sort != null)
+                {
+                    if (request.Sort.By == "Price")
+                    {
+                        if (request.Sort.Name == "ASC")
+                        {
+                            cloths = cloths.OrderBy(x => x.Price).ToList();
+                        }
+                        else
+                        {
+                            cloths = cloths.OrderByDescending(x => x.Price).ToList();
+                        }
+                    }else if (request.Sort.By == "Name")
+                    {
+                        if (request.Sort.Name == "ASC")
+                        {
+                            cloths = cloths.OrderBy(x => x.Name).ToList();
+                        }
+                        else
+                        {
+                            cloths = cloths.OrderByDescending(x => x.Name).ToList();
+                        }
+                    }else if(request.Sort.By == "Discount")
+                    {
+                        if (request.Sort.Name == "ASC")
+                        {
+                            cloths = cloths.OrderBy(x => x.Discount).ToList();
+                        }
+                        else
+                        {
+                            cloths = cloths.OrderByDescending(x => x.Discount).ToList();
+                        }
+                    }else if(request.Sort.By == "new_product")
+                    {
+                        if (request.Sort.Name == "ASC")
+                        {
+                            cloths = cloths.OrderBy(x => x.CreatedAt).ToList();
+                        }
+                        else
+                        {
+                            cloths = cloths.OrderByDescending(x => x.CreatedAt).ToList();
+                        }
+                    }
+
+                }
+                List<ClothDTO> clothDTOs = new List<ClothDTO>();
+                foreach (var cloth in cloths)
+                {
+                    ClothDTO clothDTO = new ClothDTO
+                    {
+                        Id = cloth.Id,
+                        Name = cloth.Name,
+                        Description = cloth.Description,
+                        Price = cloth.Price,
+                        Category = cloth.Category,
+                        ImagePaths = cloth.ImagePaths,
+                        Discount = cloth.Discount
+                    };
+                    List<SizeAndQuantityDTO> sizeAndQuantityDTOs = new List<SizeAndQuantityDTO>();
+                    foreach (var sizeAndQuantity in cloth.Sizes)
+                    {
+                        SizeAndQuantityDTO sizeAndQuantityDTO = new SizeAndQuantityDTO
+                        {
+                            Id = sizeAndQuantity.Id,
+                            Name = sizeAndQuantity.Name,
+                            Quantity = cloth.SizeAndClothQuantities.FirstOrDefault(x => x.SizeId == sizeAndQuantity.Id).Quantity
+                        };
+                        sizeAndQuantityDTOs.Add(sizeAndQuantityDTO);
+                    }
+                    clothDTO.Sizes = sizeAndQuantityDTOs;
+                    clothDTOs.Add(clothDTO);
+                }
+                if(clothDTOs.Count == 0)
+                {
+                    var notFoundResponse = new
+                    {
+                        StatusCode = 404,
+                        Message = "Clothes not found"
+                    };
+                    return NotFound(notFoundResponse);
+                }
+                var successResponse = new
+                {
+                    StatusCode = 200,
+                    Message = "Success",
+                    Data = clothDTOs
+                };
+                return Ok(successResponse);
+
+            }
         }
 
         // PUT: api/Clothes/5
@@ -173,7 +262,7 @@ namespace NarcisKH.Controllers
         [HttpPost]
         public async Task<ActionResult<Cloth>> PostCloth(Cloth cloth)
         {
-            _context.Cloth.Add(cloth);
+            _context.Clothes.Add(cloth);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCloth", new { id = cloth.Id }, cloth);
@@ -183,13 +272,13 @@ namespace NarcisKH.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCloth(int id)
         {
-            var cloth = await _context.Cloth.FindAsync(id);
+            var cloth = await _context.Clothes.FindAsync(id);
             if (cloth == null)
             {
                 return NotFound();
             }
 
-            _context.Cloth.Remove(cloth);
+            _context.Clothes.Remove(cloth);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -197,15 +286,15 @@ namespace NarcisKH.Controllers
         [HttpGet("InitClothDate")]
         public async Task<ActionResult> InitClothDate()
         {
-            var category = _context.Category.FirstOrDefault();
+            var category = _context.Categories.FirstOrDefault();
             if (category == null)
             {
-                return BadRequest("Category not found");
+                return BadRequest("Categories not found");
             }
-            var size = _context.Size.FirstOrDefault();
+            var size = _context.Sizes.FirstOrDefault();
             if (size == null)
             {
-                return BadRequest("Size not found");
+                return BadRequest("Sizes not found");
             }
             var cloth = new Cloth
             {
@@ -216,7 +305,7 @@ namespace NarcisKH.Controllers
                 ImagePaths = new List<string> { "https://www.google.com" },
                 Sizes = new List<Size> { size }
             };
-            _context.Cloth.Add(cloth);
+            _context.Clothes.Add(cloth);
             await _context.SaveChangesAsync();
             var sizeAndClothQuantity = new SizeAndClothQuantity
             {
@@ -224,12 +313,12 @@ namespace NarcisKH.Controllers
                 SizeId = size.Id,
                 Quantity = 10
             };
-            _context.SizeAndClothQuantity.Add(sizeAndClothQuantity);
+            _context.SizeAndClothQuantities.Add(sizeAndClothQuantity);
             await _context.SaveChangesAsync();
             var successResponse = new
             {
                 StatusCode = 200,
-                Message = "Init Cloth Data Success",
+                Message = "Init Clothes Data Success",
                 Cloth = cloth
             };
             return Ok(successResponse);
@@ -237,7 +326,7 @@ namespace NarcisKH.Controllers
 
         private bool ClothExists(int id)
         {
-            return _context.Cloth.Any(e => e.Id == id);
+            return _context.Clothes.Any(e => e.Id == id);
         }
     }
 }

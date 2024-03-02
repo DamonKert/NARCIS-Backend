@@ -97,7 +97,7 @@ namespace NarcisKH.Class
 
                                 try
                                 {
-                                   var user = await _context.User.FirstOrDefaultAsync(u => u.Username == usernameString && u.Password == password);
+                                   var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == usernameString && u.Password == password);
 
                                     await botClient.SendTextMessageAsync(msg.Chat.Id, "Login complete!");
 
@@ -105,7 +105,7 @@ namespace NarcisKH.Class
                                     {
                                         await botClient.SendTextMessageAsync(msg.Chat.Id, "Login successful!");
                                         user.ChatId = msg.Chat.Id.ToString();
-                                        _context.User.Update(user);
+                                        _context.Users.Update(user);
                                         await _context.SaveChangesAsync();
                                     }
                                     else

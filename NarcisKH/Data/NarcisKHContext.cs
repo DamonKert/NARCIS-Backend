@@ -18,35 +18,35 @@ namespace NarcisKH.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            List<CityProvinces> cityProvinces = new List<CityProvinces>
+            List<CityProvince> cityProvinces = new List<CityProvince>
             {
-            new CityProvinces { Id = 1, Name_kh = "កោះកុង", Name_en = "Koh Kong", DeliveryFee = 1.5f },
-            new CityProvinces { Id = 2, Name_kh = "កណ្ដាល", Name_en = "Kandal", DeliveryFee = 1.5f },
-            new CityProvinces { Id = 3, Name_kh = "ភ្នំពេញ", Name_en = "Phnom Penh", DeliveryFee = 0 },
-            new CityProvinces { Id = 4, Name_kh = "ព្រៃវែង", Name_en = "Prey Veng", DeliveryFee = 1.5f },
-            new CityProvinces { Id = 5, Name_kh = "ស្ទឹងត្រែង", Name_en = "Svay Rieng", DeliveryFee = 1 },
-            new CityProvinces { Id = 6, Name_kh = "ព្រះសីហនុ", Name_en = "Sihanoukville", DeliveryFee = 2 },
-            new CityProvinces { Id = 7, Name_kh = "ស្វាយរៀង", Name_en = "Kampong Speu", DeliveryFee = 3 },
-            new CityProvinces { Id = 8, Name_kh = "កែប", Name_en = "Kep", DeliveryFee = 0 },
-            new CityProvinces { Id = 9, Name_kh = "ឧត្តរមានជ័យ", Name_en = "Oddar Meanchey", DeliveryFee = 0 },
-            new CityProvinces { Id = 10, Name_kh = "មណ្ឌលគិរី", Name_en = "Ratanakiri", DeliveryFee = 0 },
-            new CityProvinces { Id = 11, Name_kh = "បន្ទាយមានជ័យ", Name_en = "Banteay Meanchey", DeliveryFee = 0 },
-            new CityProvinces { Id = 12, Name_kh = "កំពត", Name_en = "Kampong Thom", DeliveryFee = 0 },
-            new CityProvinces { Id = 13, Name_kh = "សៀមរាប", Name_en = "Siem Reap", DeliveryFee = 4 },
-            new CityProvinces { Id = 14, Name_kh = "ពោធិ៍សាត់", Name_en = "Pursat", DeliveryFee = 0 },
-            new CityProvinces { Id = 15, Name_kh = "កំពង់ចាម", Name_en = "Kampong Cham", DeliveryFee = 0 },
-            new CityProvinces { Id = 16, Name_kh = "ត្បូងឃ្មុំ", Name_en = "Tbong Khmum", DeliveryFee = 0 },
-            new CityProvinces { Id = 17, Name_kh = "តាកែវ", Name_en = "Takeo", DeliveryFee = 0 },
-            new CityProvinces { Id = 18, Name_kh = "រតនគិរី", Name_en = "Kratie", DeliveryFee = 0 },
-            new CityProvinces { Id = 19, Name_kh = "ក្រចេះ", Name_en = "Phnom Penh", DeliveryFee = 5 },
-            new CityProvinces { Id = 20, Name_kh = "ព្រះវិហារ", Name_en = "Preah Vihear", DeliveryFee = 0 },
-            new CityProvinces { Id = 21, Name_kh = "បាត់ដំបង", Name_en = "Battambang", DeliveryFee = 0 },
-            new CityProvinces { Id = 22, Name_kh = "កំពង់ឆ្នាំង", Name_en = "Kampong Chhnang", DeliveryFee = 0 },
-            new CityProvinces { Id = 23, Name_kh = "កំពង់ធំ", Name_en = "Kampong Thom", DeliveryFee = 0 },
-            new CityProvinces { Id = 24, Name_kh = "ប៉ៃលិន", Name_en = "Pailin", DeliveryFee = 0 },
-            new CityProvinces { Id = 25, Name_kh = "កំពង់ស្ពឺ", Name_en = "Kampong Speu", DeliveryFee = 0 },
+            new CityProvince { Id = 1, Name_kh = "កោះកុង", Name_en = "Koh Kong", DeliveryFee = 1.5f },
+            new CityProvince { Id = 2, Name_kh = "កណ្ដាល", Name_en = "Kandal", DeliveryFee = 1.5f },
+            new CityProvince { Id = 3, Name_kh = "ភ្នំពេញ", Name_en = "Phnom Penh", DeliveryFee = 0 },
+            new CityProvince { Id = 4, Name_kh = "ព្រៃវែង", Name_en = "Prey Veng", DeliveryFee = 1.5f },
+            new CityProvince { Id = 5, Name_kh = "ស្ទឹងត្រែង", Name_en = "Svay Rieng", DeliveryFee = 1 },
+            new CityProvince { Id = 6, Name_kh = "ព្រះសីហនុ", Name_en = "Sihanoukville", DeliveryFee = 2 },
+            new CityProvince { Id = 7, Name_kh = "ស្វាយរៀង", Name_en = "Kampong Speu", DeliveryFee = 3 },
+            new CityProvince { Id = 8, Name_kh = "កែប", Name_en = "Kep", DeliveryFee = 0 },
+            new CityProvince { Id = 9, Name_kh = "ឧត្តរមានជ័យ", Name_en = "Oddar Meanchey", DeliveryFee = 0 },
+            new CityProvince { Id = 10, Name_kh = "មណ្ឌលគិរី", Name_en = "Ratanakiri", DeliveryFee = 0 },
+            new CityProvince { Id = 11, Name_kh = "បន្ទាយមានជ័យ", Name_en = "Banteay Meanchey", DeliveryFee = 0 },
+            new CityProvince { Id = 12, Name_kh = "កំពត", Name_en = "Kampong Thom", DeliveryFee = 0 },
+            new CityProvince { Id = 13, Name_kh = "សៀមរាប", Name_en = "Siem Reap", DeliveryFee = 4 },
+            new CityProvince { Id = 14, Name_kh = "ពោធិ៍សាត់", Name_en = "Pursat", DeliveryFee = 0 },
+            new CityProvince { Id = 15, Name_kh = "កំពង់ចាម", Name_en = "Kampong Cham", DeliveryFee = 0 },
+            new CityProvince { Id = 16, Name_kh = "ត្បូងឃ្មុំ", Name_en = "Tbong Khmum", DeliveryFee = 0 },
+            new CityProvince { Id = 17, Name_kh = "តាកែវ", Name_en = "Takeo", DeliveryFee = 0 },
+            new CityProvince { Id = 18, Name_kh = "រតនគិរី", Name_en = "Kratie", DeliveryFee = 0 },
+            new CityProvince { Id = 19, Name_kh = "ក្រចេះ", Name_en = "Phnom Penh", DeliveryFee = 5 },
+            new CityProvince { Id = 20, Name_kh = "ព្រះវិហារ", Name_en = "Preah Vihear", DeliveryFee = 0 },
+            new CityProvince { Id = 21, Name_kh = "បាត់ដំបង", Name_en = "Battambang", DeliveryFee = 0 },
+            new CityProvince { Id = 22, Name_kh = "កំពង់ឆ្នាំង", Name_en = "Kampong Chhnang", DeliveryFee = 0 },
+            new CityProvince { Id = 23, Name_kh = "កំពង់ធំ", Name_en = "Kampong Thom", DeliveryFee = 0 },
+            new CityProvince { Id = 24, Name_kh = "ប៉ៃលិន", Name_en = "Pailin", DeliveryFee = 0 },
+            new CityProvince { Id = 25, Name_kh = "កំពង់ស្ពឺ", Name_en = "Kampong Speu", DeliveryFee = 0 },
             };
-            modelBuilder.Entity<CityProvinces>().HasData(cityProvinces);
+            modelBuilder.Entity<CityProvince>().HasData(cityProvinces);
             List<OrderStatus> orderStatuses = new List<OrderStatus>
             {
                 new OrderStatus
@@ -143,7 +143,7 @@ namespace NarcisKH.Data
                 new Role
                 {
                     Id = 2,
-                    Name = "User"
+                    Name = "Users"
                 },
                 new Role
                 {
@@ -269,16 +269,16 @@ namespace NarcisKH.Data
             //    new Status
             //    {
             //        Id = 1,
-            //        OrderStatus = orderStatuses[0],
-            //        PaymentStatus = paymentStatuses[0],
-            //        PaymentMethod = paymentMethods[0],
-            //        DeliveryStatus = deliveryStatuses[0],
+            //        OrderStatuses = orderStatuses[0],
+            //        PaymentStatuses = paymentStatuses[0],
+            //        PaymentMethods = paymentMethods[0],
+            //        DeliveryStatuses = deliveryStatuses[0],
             //    }
             //};
             //modelBuilder.Entity<Status>().HasData(statuses);
-            //List<Order> orders = new List<Order>
+            //List<Orders> orders = new List<Orders>
             //{
-            //    new Order
+            //    new Orders
             //    {
             //        Id = 1,
             //        FullName = "Teng Sambo",
@@ -293,22 +293,22 @@ namespace NarcisKH.Data
 
             //    }
             //};
-            //modelBuilder.Entity<Order>().HasData(orders);
+            //modelBuilder.Entity<Orders>().HasData(orders);
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<NarcisKH.Models.User> User { get; set; } = default!;
-        public DbSet<NarcisKH.Models.Order> Order { get; set; } = default!;
-        public DbSet<NarcisKH.Models.CityProvinces> CityProvinces { get; set; } = default!;
-        public DbSet<NarcisKH.Models.OrderStatus> OrderStatus { get; set; } = default!;
-        public DbSet<NarcisKH.Models.PaymentStatus> PaymentStatus { get; set; } = default!;
-        public DbSet<NarcisKH.Models.PaymentMethod> PaymentMethod { get; set; } = default!;
-        public DbSet<NarcisKH.Models.DeliveryStatus> DeliveryStatus { get; set; } = default!;
-        public DbSet<NarcisKH.Models.Role> Role { get; set; } = default!;
-        public DbSet<NarcisKH.Models.Category> Category { get; set; } = default!;
-        public DbSet<NarcisKH.Models.Cloth> Cloth { get; set; } = default!;
-        public DbSet<NarcisKH.Models.Size> Size { get; set; } = default!;
-        public DbSet<NarcisKH.Models.SizeAndClothQuantity> SizeAndClothQuantity { get; set; } = default!;
+        public DbSet<NarcisKH.Models.User> Users { get; set; } = default!;
+        public DbSet<NarcisKH.Models.Order> Orders { get; set; } = default!;
+        public DbSet<NarcisKH.Models.CityProvince> CityProvinces { get; set; } = default!;
+        public DbSet<NarcisKH.Models.OrderStatus> OrderStatuses { get; set; } = default!;
+        public DbSet<NarcisKH.Models.PaymentStatus> PaymentStatuses { get; set; } = default!;
+        public DbSet<NarcisKH.Models.PaymentMethod> PaymentMethods { get; set; } = default!;
+        public DbSet<NarcisKH.Models.DeliveryStatus> DeliveryStatuses { get; set; } = default!;
+        public DbSet<NarcisKH.Models.Role> Roles { get; set; } = default!;
+        public DbSet<NarcisKH.Models.Category> Categories { get; set; } = default!;
+        public DbSet<NarcisKH.Models.Cloth> Clothes { get; set; } = default!;
+        public DbSet<NarcisKH.Models.Size> Sizes { get; set; } = default!;
+        public DbSet<NarcisKH.Models.SizeAndClothQuantity> SizeAndClothQuantities { get; set; } = default!;
 
 
     }

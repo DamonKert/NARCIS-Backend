@@ -17,7 +17,8 @@
         public Category Category { get; set; } = default!;
         public virtual ICollection<Size>? Sizes { get; set; } = new List<Size>();
         public virtual ICollection<SizeAndClothQuantity>? SizeAndClothQuantities { get; set; } = new List<SizeAndClothQuantity>();
-
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
     }
 }
