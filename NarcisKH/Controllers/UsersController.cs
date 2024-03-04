@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NarcisKH.Class;
 using NarcisKH.Data;
 using NarcisKH.Models;
 
@@ -26,21 +27,31 @@ namespace NarcisKH.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users.Include(x=>x.Role).ToListAsync();
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.Users.Include(x=>x.Role).FirstOrDefaultAsync(x=>x.Id == id);
 
             if (user == null)
             {
-                return NotFound();
+               var notFoundResponse = new
+               {
+                   StatusCode = 404,
+                   Message = "User Not Found"
+               };
+                return NotFound(notFoundResponse);
             }
-
-            return user;
+            var successResponse = new
+            {
+                StatusCode = 200,
+                Message = "User Found",
+                Data = user
+            };
+            return Ok(successResponse);
         }
 
         // PUT: api/Users/5
@@ -77,12 +88,70 @@ namespace NarcisKH.Controllers
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<User>> PostUser([FromBody]CreateUserRequest user)
         {
-            _context.Users.Add(user);
+            List<string> errors = new List<string>();
+            if (user.Username == null)
+            {
+                errors.Add("Username field is required");
+            }
+            if(user.Password  == null)
+            {
+                errors.Add("Password field is required");
+            }
+            else
+            {
+                if(user.Password != user.ConfirmPassword)
+                {
+                    errors.Add("Password and Confirm Password do not match");
+                }
+            }
+            if (user.ConfirmPassword == null)
+            {
+                errors.Add("Confirm Password field is required");
+            }
+            if (user.PhoneNumber == null)
+            {
+                errors.Add("PhoneNumber field is required");
+            }
+            else
+            {
+                if(int.TryParse(user.PhoneNumber, out int result) == false)
+                {
+                    errors.Add("PhoneNumber must be a number");
+                }
+            }
+            if (user.RoleId == 0 || user.RoleId == null)
+            {
+                errors.Add("RoleId field is required");
+            }
+            if(errors.Count > 0)
+            {
+                return BadRequest(new { StatusCode = 400, Message = "Validation Error", Errors = errors });
+            }
+            var role = _context.Roles.FirstOrDefault(x => x.Id == user.RoleId);
+            if(role == null)
+            {
+                return BadRequest(new { StatusCode = 400, Message = "Validation Error", Errors = new List<string> { "Role does not exist" } });
+            }
+            var newUser = new User
+            {
+                Username = user.Username,
+                Password = user.Password,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                Role = role
+            };
+            _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
+            var successResponse = new
+            {
+                StatusCode = 201,
+                Message = "User Created Successfully",
+                Data = newUser
+            };
+            return CreatedAtAction("GetUser", new { id = newUser.Id }, successResponse);
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
         // DELETE: api/Users/5

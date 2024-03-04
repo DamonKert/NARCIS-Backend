@@ -136,9 +136,9 @@ namespace NarcisKH.Controllers
                 var cloths = await _context.Clothes.Include(x => x.Category).Include(x => x.Sizes).Include(x => x.SizeAndClothQuantities).Where(x => x.CategoryId == request.CategoryId).ToListAsync();
                 if (request.Sort != null)
                 {
-                    if (request.Sort.By == "Price")
+                    if (request.Sort.Mode == 1)
                     {
-                        if (request.Sort.Name == "ASC")
+                        if (request.Sort.By == "ASC")
                         {
                             cloths = cloths.OrderBy(x => x.Price).ToList();
                         }
@@ -146,9 +146,9 @@ namespace NarcisKH.Controllers
                         {
                             cloths = cloths.OrderByDescending(x => x.Price).ToList();
                         }
-                    }else if (request.Sort.By == "Name")
+                    }else if (request.Sort.Mode == 2)
                     {
-                        if (request.Sort.Name == "ASC")
+                        if (request.Sort.By == "ASC")
                         {
                             cloths = cloths.OrderBy(x => x.Name).ToList();
                         }
@@ -156,9 +156,9 @@ namespace NarcisKH.Controllers
                         {
                             cloths = cloths.OrderByDescending(x => x.Name).ToList();
                         }
-                    }else if(request.Sort.By == "Discount")
+                    }else if(request.Sort.Mode == 3)
                     {
-                        if (request.Sort.Name == "ASC")
+                        if (request.Sort.By == "ASC")
                         {
                             cloths = cloths.OrderBy(x => x.Discount).ToList();
                         }
@@ -166,15 +166,25 @@ namespace NarcisKH.Controllers
                         {
                             cloths = cloths.OrderByDescending(x => x.Discount).ToList();
                         }
-                    }else if(request.Sort.By == "new_product")
+                    }else if(request.Sort.Mode == 4)
                     {
-                        if (request.Sort.Name == "ASC")
+                        if (request.Sort.By == "ASC")
                         {
                             cloths = cloths.OrderBy(x => x.CreatedAt).ToList();
                         }
                         else
                         {
                             cloths = cloths.OrderByDescending(x => x.CreatedAt).ToList();
+                        }
+                    }else if(request.Sort.Mode == 5)
+                    {
+                        if (request.Sort.By == "ASC")
+                        {
+                            cloths = cloths.OrderBy(x => x.UpdatedAt).ToList();
+                        }
+                        else
+                        {
+                            cloths = cloths.OrderByDescending(x => x.UpdatedAt).ToList();
                         }
                     }
 
@@ -235,7 +245,6 @@ namespace NarcisKH.Controllers
             {
                 return BadRequest();
             }
-
             _context.Entry(cloth).State = EntityState.Modified;
 
             try
