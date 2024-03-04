@@ -29,8 +29,8 @@ namespace NarcisKH.Class
     }
     public class Sort
     {
-       public string Name { get; set; }
-        public string? By { get; set; }
+        public string By { get; set; }
+        public int? Mode { get; set; }
     }
     public class LoginResponse
     {
