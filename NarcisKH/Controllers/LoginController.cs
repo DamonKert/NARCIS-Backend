@@ -23,7 +23,7 @@ namespace NarcisKH.Controllers
             _context = context;
         }
         [HttpPost]
-        public IActionResult Login([FromBody] User login)
+        public IActionResult Login([FromBody] LoginRequest login)
         {
             IActionResult response = Unauthorized();
             var user = AuthenticateUser(login);
@@ -31,11 +31,27 @@ namespace NarcisKH.Controllers
             {
                 var tokenString = GenerateJSONWebToken(user);
                 response = Ok(new { token = tokenString });
+                var successResponse = new
+                {
+                    StatusCode = 200,
+                    Message = "Login Successful",
+                    Token = tokenString,
+                };
+                response = Ok(successResponse);
             }
-
-            BotClass bot = new BotClass(new TelegramBotClient("6441721739:AAFvyv5IMs37Oz0Vanqf2UVEeIIaQ3lFlcI"), _context);
-            bot.SendMessage();
-            bot.StartReceiever();
+            else
+            {
+                var errorResponse = new
+                {
+                    StatusCode = 401,
+                    Message = "Invalid Username or Password"
+                };
+                response = Unauthorized(errorResponse);
+            }
+           
+            //BotClass bot = new BotClass(new TelegramBotClient("6441721739:AAFvyv5IMs37Oz0Vanqf2UVEeIIaQ3lFlcI"), _context);
+            //bot.SendMessage();
+            //bot.StartReceiever();
             return response;
         }
         private string GenerateJSONWebToken(User userInfo)
@@ -49,7 +65,7 @@ namespace NarcisKH.Controllers
                                                                     signingCredentials: credentials);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-        private User AuthenticateUser(User login)
+        private User AuthenticateUser(LoginRequest login)
         {
            var User =_context.Users.Include(x => x.Role).FirstOrDefault(x => x.Username.ToLower() == login.Username.ToLower() && x.Password == login.Password);
             return User;

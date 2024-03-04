@@ -309,7 +309,6 @@ namespace NarcisKH.Data
         public DbSet<NarcisKH.Models.Cloth> Clothes { get; set; } = default!;
         public DbSet<NarcisKH.Models.Size> Sizes { get; set; } = default!;
         public DbSet<NarcisKH.Models.SizeAndClothQuantity> SizeAndClothQuantities { get; set; } = default!;
-
-
+        public DbSet<NarcisKH.Models.Status> Statuses { get; set; } = default!;
     }
 }

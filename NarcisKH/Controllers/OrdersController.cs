@@ -25,7 +25,17 @@ namespace NarcisKH.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrder()
         {
-            return await _context.Orders.ToListAsync();
+            return await _context.Orders.Include(x => x.Status)
+                                     .ThenInclude(status => status.OrderStatus) 
+                                 .Include(x => x.Status)
+                                     .ThenInclude(status => status.PaymentStatus)
+                                 .Include(x => x.Status)
+                                     .ThenInclude(status => status.DeliveryStatus)
+                                 .Include(x => x.Status)
+                                     .ThenInclude(status => status.PaymentMethod) 
+                                 .Include(x => x.CityProvince)
+                                 .ToListAsync();
+
         }
 
         // GET: api/Orders/5
@@ -99,7 +109,37 @@ namespace NarcisKH.Controllers
 
             return NoContent();
         }
-
+        [HttpGet("InitializeOrderData")]
+        public async Task<ActionResult<Order>> InitializeOrderData()
+        {
+            var DeliveryStatus = await _context.DeliveryStatuses.FirstOrDefaultAsync();
+            var OrderStatus = await _context.OrderStatuses.FirstOrDefaultAsync();
+            var PaymentMethod = await _context.PaymentMethods.FirstOrDefaultAsync();
+            var User = await _context.Users.FirstOrDefaultAsync();
+            var CityProvince = await _context.CityProvinces.FirstOrDefaultAsync();
+            Status status = new Status
+            {
+                OrderStatus = OrderStatus,
+                DeliveryStatus = DeliveryStatus,
+                PaymentMethod = PaymentMethod
+            };
+            var order = new Order
+            {
+                FullName = "TengSambo",
+                Address = "PhnomPenh",
+                Phone = "0751234567",
+                Note = "Note",
+                CityProvince = CityProvince,
+                Status = status,
+                Employee = User,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now
+            };
+            _context.Statuses.Add(status);
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetOrder", new { id = order.Id }, order);
+        }
         private bool OrderExists(int id)
         {
             return _context.Orders.Any(e => e.Id == id);
