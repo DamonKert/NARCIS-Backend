@@ -25,14 +25,24 @@ namespace NarcisKH.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrder()
         {
-            return await _context.Order.ToListAsync();
+            return await _context.Orders.Include(x => x.Status)
+                                     .ThenInclude(status => status.OrderStatus) 
+                                 .Include(x => x.Status)
+                                     .ThenInclude(status => status.PaymentStatus)
+                                 .Include(x => x.Status)
+                                     .ThenInclude(status => status.DeliveryStatus)
+                                 .Include(x => x.Status)
+                                     .ThenInclude(status => status.PaymentMethod) 
+                                 .Include(x => x.CityProvince)
+                                 .ToListAsync();
+
         }
 
         // GET: api/Orders/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
-            var order = await _context.Order.FindAsync(id);
+            var order = await _context.Orders.FindAsync(id);
 
             if (order == null)
             {
@@ -78,7 +88,7 @@ namespace NarcisKH.Controllers
         [HttpPost]
         public async Task<ActionResult<Order>> PostOrder(Order order)
         {
-            _context.Order.Add(order);
+            _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetOrder", new { id = order.Id }, order);
@@ -88,21 +98,51 @@ namespace NarcisKH.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
-            var order = await _context.Order.FindAsync(id);
+            var order = await _context.Orders.FindAsync(id);
             if (order == null)
             {
                 return NotFound();
             }
 
-            _context.Order.Remove(order);
+            _context.Orders.Remove(order);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
-
+        [HttpGet("InitializeOrderData")]
+        public async Task<ActionResult<Order>> InitializeOrderData()
+        {
+            var DeliveryStatus = await _context.DeliveryStatuses.FirstOrDefaultAsync();
+            var OrderStatus = await _context.OrderStatuses.FirstOrDefaultAsync();
+            var PaymentMethod = await _context.PaymentMethods.FirstOrDefaultAsync();
+            var User = await _context.Users.FirstOrDefaultAsync();
+            var CityProvince = await _context.CityProvinces.FirstOrDefaultAsync();
+            Status status = new Status
+            {
+                OrderStatus = OrderStatus,
+                DeliveryStatus = DeliveryStatus,
+                PaymentMethod = PaymentMethod
+            };
+            var order = new Order
+            {
+                FullName = "TengSambo",
+                Address = "PhnomPenh",
+                Phone = "0751234567",
+                Note = "Note",
+                CityProvince = CityProvince,
+                Status = status,
+                Employee = User,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now
+            };
+            _context.Statuses.Add(status);
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetOrder", new { id = order.Id }, order);
+        }
         private bool OrderExists(int id)
         {
-            return _context.Order.Any(e => e.Id == id);
+            return _context.Orders.Any(e => e.Id == id);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NarcisKH.Models
 {
-    public class CityProvinces
+    public class CityProvince
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]

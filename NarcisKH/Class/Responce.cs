@@ -25,14 +25,18 @@ namespace NarcisKH.Class
     public class GetClothByIdsRequest
     {
         public int CategoryId { get; set; }
-        public int ChildId { get; set; }
-        public Sort Sort { get; set; }
-        public int MaxProductPerPage { get; set; }
-
+        public Sort? Sort { get; set; }
     }
     public class Sort
     {
        public string Name { get; set; }
-        public string By { get; set; }
+        public string? By { get; set; }
+    }
+    public class LoginResponse
+    {
+        public string Token { get; set; }
+        public string Error { get; set; }
+        public int Status { get; set; }
+        public string Role { get; set; }
     }
 }

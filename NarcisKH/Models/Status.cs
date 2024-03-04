@@ -15,13 +15,10 @@ namespace NarcisKH.Models
         [ForeignKey("OrderStatusId")]
         [Required]
         public virtual OrderStatus OrderStatus { get; set; }
-
         [ForeignKey("PaymentStatusId")]
         public virtual PaymentStatus? PaymentStatus { get; set; }
-
         [ForeignKey("DeliveryStatusId")]
         public virtual DeliveryStatus? DeliveryStatus { get; set; }
-
         [ForeignKey("PaymentMethodId")]
         public virtual PaymentMethod? PaymentMethod { get; set; }
 

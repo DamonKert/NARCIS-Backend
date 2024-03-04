@@ -7,7 +7,7 @@
         public string? Address { get; set; }
         public string Phone { get; set; }
         public string Note { get; set; }
-        public CityProvinces CityProvince { get; set; }
+        public CityProvince CityProvince { get; set; }
         public Status Status { get; set; }
         public User Employee { get; set; }
 
