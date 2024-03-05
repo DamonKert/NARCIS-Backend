@@ -543,3 +543,5 @@ E:\Coding\NARCIS-Backend\NarcisKH\obj\Debug\net8.0\refint\NarcisKH.dll
 E:\Coding\NARCIS-Backend\NarcisKH\obj\Debug\net8.0\NarcisKH.pdb
 E:\Coding\NARCIS-Backend\NarcisKH\obj\Debug\net8.0\NarcisKH.genruntimeconfig.cache
 E:\Coding\NARCIS-Backend\NarcisKH\obj\Debug\net8.0\ref\NarcisKH.dll
+E:\Coding\NARCIS-Backend\NarcisKH\bin\Debug\net8.0\AWSSDK.Core.dll
+E:\Coding\NARCIS-Backend\NarcisKH\bin\Debug\net8.0\AWSSDK.S3.dll
