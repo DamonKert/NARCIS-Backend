@@ -142,6 +142,11 @@ namespace NarcisKH.Controllers
                 PhoneNumber = user.PhoneNumber,
                 Role = role
             };
+            var existedUser = _context.Users.FirstOrDefault(x => x.Username.ToLower() == user.Username.ToLower());
+            if(existedUser != null)
+            {
+                return BadRequest(new { StatusCode = 400, Message = "Validation Error", Errors = new List<string> { "Username already exists" } });
+            }
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
             var successResponse = new
@@ -151,7 +156,6 @@ namespace NarcisKH.Controllers
                 Data = newUser
             };
             return CreatedAtAction("GetUser", new { id = newUser.Id }, successResponse);
-
         }
 
         // DELETE: api/Users/5
