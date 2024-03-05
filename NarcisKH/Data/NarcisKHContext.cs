@@ -264,36 +264,66 @@ namespace NarcisKH.Data
                 }
             };
             modelBuilder.Entity<Size>().HasData(sizes);
-            //List<Status> statuses = new List<Status>
-            //{
-            //    new Status
-            //    {
-            //        Id = 1,
-            //        OrderStatuses = orderStatuses[0],
-            //        PaymentStatuses = paymentStatuses[0],
-            //        PaymentMethods = paymentMethods[0],
-            //        DeliveryStatuses = deliveryStatuses[0],
-            //    }
-            //};
-            //modelBuilder.Entity<Status>().HasData(statuses);
-            //List<Orders> orders = new List<Orders>
-            //{
-            //    new Orders
-            //    {
-            //        Id = 1,
-            //        FullName = "Teng Sambo",
-            //        Address = "Phnom Penh, Dangkor, Dangkor",
-            //        Phone = "087827181",
-            //        Note = "Please call me before deliver",
-            //        CityProvince = cityProvinces[3],
-            //        Employee = users[0],
-            //        Status = statuses[0],
-            //        CreatedDate = DateTime.Now,
-            //        UpdatedDate = DateTime.Now
+            List<Model> Models = new List<Model>
+            {
+                new Model
+                {
+                    Id = 1,
+                    Name = "Kira",
+                    Age = null,
+                    Height = 171,
+                    Weight = 55,
+                    Top = "S",
+                    Bottom = "M",
+                    ProfilePicture = "https://i.imgur.com/fAn4V8X.jpeg",
+                },
+                new Model
+                {
+                    Id = 2,
+                    Name = "Ari",
+                    Age = null,
+                    Height = 163,
+                    Weight = 46,
+                    Top = "S",
+                    Bottom = "S",
+                    ProfilePicture = "https://i.imgur.com/0uwQ2KA.jpeg",
+                },
+                new Model
+                {
+                    Id = 3,
+                    Name = "Ho Jeoung",
+                    Age = null,
+                    Height = 165,
+                    Weight = 49,
+                    Top = "S",
+                    Bottom = "S",
+                    ProfilePicture = "https://i.imgur.com/zPRC7JH.jpeg",
+                },
+                new Model
+                {
+                    Id = 4,
+                    Name = "Seo Young",
+                    Age = null,
+                    Height = 164,
+                    Weight = 45,
+                    Top = "S",
+                    Bottom = "S",
+                    ProfilePicture = "https://i.imgur.com/dCcQQL9.jpeg",
+                },
+                new Model
+                {
+                    Id = 5,
+                    Name = "Ga Eul",
+                    Age = null,
+                    Height = 164,
+                    Weight = 45,
+                    Top = "S",
+                    Bottom = "S",
+                    ProfilePicture = "https://i.imgur.com/qiCE8vf.jpeg",
+                },
 
-            //    }
-            //};
-            //modelBuilder.Entity<Orders>().HasData(orders);
+            };
+            modelBuilder.Entity<Model>().HasData(Models);
             base.OnModelCreating(modelBuilder);
         }
 
@@ -310,5 +340,6 @@ namespace NarcisKH.Data
         public DbSet<NarcisKH.Models.Size> Sizes { get; set; } = default!;
         public DbSet<NarcisKH.Models.SizeAndClothQuantity> SizeAndClothQuantities { get; set; } = default!;
         public DbSet<NarcisKH.Models.Status> Statuses { get; set; } = default!;
+        public DbSet<NarcisKH.Models.Model> Models { get; set; } = default!;
     }
 }
