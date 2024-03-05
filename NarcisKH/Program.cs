@@ -100,6 +100,7 @@ namespace NarcisKH
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+            app.UseCors(MyAllowSpecificOrigins);
 
 
             app.MapControllers();
