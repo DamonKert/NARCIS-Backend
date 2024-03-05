@@ -140,6 +140,7 @@ namespace NarcisKH.Controllers
                 Password = user.Password,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
+                ChatId = user.ChatId,
                 Role = role
             };
             var existedUser = _context.Users.FirstOrDefault(x => x.Username.ToLower() == user.Username.ToLower());
@@ -157,7 +158,6 @@ namespace NarcisKH.Controllers
             };
             return CreatedAtAction("GetUser", new { id = newUser.Id }, successResponse);
         }
-
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
         [Authorize]

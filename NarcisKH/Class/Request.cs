@@ -1,4 +1,6 @@
-﻿namespace NarcisKH.Class
+﻿using Microsoft.AspNetCore.Http;
+
+namespace NarcisKH.Class
 {
    public class LoginRequest
     {
@@ -13,5 +15,17 @@
         public string? Email { get; set; }
         public string PhoneNumber { get; set; }
         public int RoleId { get; set; }
+        public string? ChatId { get; set; }
+    }
+    public class CreateModelRequest
+    {
+        public string Name { get; set; }
+        public int? Age { get; set; }
+        public int Height { get; set; }
+        public int Weight { get; set; }
+        public string Bottom { get; set; }
+        public string Top { get; set; }
+        public IFormFile Profile { get; set; }
+
     }
 }
