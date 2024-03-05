@@ -5,6 +5,7 @@
         public string Name { get; set; }
         public MemoryStream InputStream { get; set; } = null;
         public string BucketName { get; set; } = null!;
+        public string ACL { get; set; } = "public-read";
 
     }
 }
