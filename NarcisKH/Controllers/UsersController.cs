@@ -27,7 +27,23 @@ namespace NarcisKH.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
-            return await _context.Users.Include(x=>x.Role).ToListAsync();
+            var users = await _context.Users.Include(x=>x.Role).ToListAsync();
+            if(users.Count == 0)
+            {
+                var notFoundresponse = new
+                {
+                    StatusCode = 404,
+                    Message = "No Users Found"
+                };
+                return NotFound(notFoundresponse);
+            }
+            var successResponse = new
+            {
+                StatusCode = 200,
+                Message = "Users Found",
+                Data = users
+            };
+            return Ok(successResponse);
         }
 
         // GET: api/Users/5
@@ -53,36 +69,76 @@ namespace NarcisKH.Controllers
             };
             return Ok(successResponse);
         }
-
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        [HttpPost("EditUser")]
+        public async Task<IActionResult> EditUser(UpdateUserRequest user)
         {
-            if (id != user.Id)
+           var existedUser = _context.Users.FirstOrDefault(x => x.Id == user.ID);
+            if(existedUser == null)
             {
-                return BadRequest();
+                return NotFound(new { StatusCode = 404, Message = "User Not Found" });
             }
-
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
+            if(user.Password != user.ConfirmPassword)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
+                var errorResponse = new
                 {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                    StatusCode = 400,
+                    Message = "Password and Confirm Password are not matched"
+                };
+                return BadRequest(errorResponse);
             }
-
-            return NoContent();
+            var takenUsername = _context.Users.FirstOrDefault(x=>x.Id != user.ID && x.Username == user.Username);
+            if(takenUsername != null)
+            {
+                var takenResponse = new
+                {
+                    StatusCode = 400,
+                    Message = "Username is already taken"
+                };
+                return BadRequest(takenResponse);
+            }
+            existedUser.Username = user.Username;
+            existedUser.Password = user.Password;
+            var role = _context.Roles.FirstOrDefault(x => x.Id == user.RoleId);
+            if(role == null)
+            {
+                var errorResponse = new
+                {
+                    StatusCode = 400,
+                    Message = "Role not found, Please give a valid RoleID"
+                };
+                return BadRequest(errorResponse);
+            }
+            existedUser.Role = role;
+            if (!int.TryParse(user.PhoneNumber, out _))
+            {
+                var wrongPhoneNumberResponse = new
+                {
+                    StatusCode = 400,
+                    Message = "Please provide a valid phone number"
+                };
+                return BadRequest(wrongPhoneNumberResponse);
+            }
+            existedUser.PhoneNumber = user.PhoneNumber;
+            if(user.Email != null)
+            {
+                existedUser.Email = user.Email;
+            }
+            if(existedUser.ChatId != null)
+            {
+                existedUser.ChatId = user.ChatId;
+            }
+           
+            _context.Entry(existedUser).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            var successResponse = new
+            {
+                StatusCode = 200,
+                Message = "User Updated Successfully",
+                Data = existedUser
+            };
+            return Ok(successResponse);
         }
 
         // POST: api/Users
@@ -123,7 +179,7 @@ namespace NarcisKH.Controllers
             }
             if (user.RoleId == 0 || user.RoleId == null)
             {
-                errors.Add("RoleId field is required");
+                errors.Add("RoleId field is required"); 
             }
             if(errors.Count > 0)
             {

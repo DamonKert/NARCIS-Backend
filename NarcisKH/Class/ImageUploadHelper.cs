@@ -9,9 +9,38 @@ namespace NarcisKH.Class
 {
     public class ImageUploadHelper : IStorageService
     {
-        public Task<S3ResponseDTO> DeleteFileAsync(string fileUrl)
+        public Task<S3ResponseDTO> DeleteFileAsync(string fileName, string bucketName, AwsCredentials awsCredentials)
         {
-            throw new NotImplementedException();
+            var credentials = new AwsCredentials
+            {
+                AwsKey = awsCredentials.AwsKey,
+                AwsSecretKey = awsCredentials.AwsSecretKey
+            };
+            var config = new AmazonS3Config
+            {
+                RegionEndpoint = Amazon.RegionEndpoint.APSoutheast1
+            };
+            var response = new S3ResponseDTO();
+            try
+            {
+                using (var client = new AmazonS3Client(credentials.AwsKey, credentials.AwsSecretKey, config))
+                {
+                    var deleteObjectRequest = new DeleteObjectRequest
+                    {
+                        BucketName = bucketName,
+                        Key = fileName
+                    };
+                    client.DeleteObjectAsync(deleteObjectRequest);
+                    response.StatusCode = 200;
+                    response.Message = "File deleted successfully";
+                }
+            }
+            catch (AmazonS3Exception e)
+            {
+                response.StatusCode = (int)e.StatusCode;
+                response.Message = e.Message;
+            }
+            return Task.FromResult(response);
         }
 
         public async Task<S3ResponseDTO> UploadFileAsync(NarcisKH.Models.S3Handler.S3Object s3Object, AwsCredentials awsCredentials)
