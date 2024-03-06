@@ -39,4 +39,11 @@ namespace NarcisKH.Class
         public int Status { get; set; }
         public string Role { get; set; }
     }
+    public class GetCategoriesResponse 
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public List<Category> Children { get; set; }
+        public Category Parent { get; set; }
+    }
 }

@@ -16,12 +16,13 @@ namespace NarcisKH.Models
         public int Id { get; set; }
         public string Name { get; set; } = default!;
 
+        [JsonIgnore]
         public int? ParentId { get; set; }
 
-        [JsonIgnore]
         [ForeignKey("ParentId")]
         public Category Parent { get; set; } = default!;
 
+        [JsonIgnore]
         public List<Category> Children { get; set; } = new List<Category>();
     }
 }

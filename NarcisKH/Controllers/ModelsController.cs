@@ -258,7 +258,6 @@ namespace NarcisKH.Controllers
                };
                 return NotFound(notFoundResponse);
             }
-
             _context.Models.Remove(model);
             await _context.SaveChangesAsync();
             var successResponse = new

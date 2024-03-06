@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Amazon.S3.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NarcisKH.Class;
 using NarcisKH.Data;
 using NarcisKH.Models;
+using NarcisKH.Models.S3Handler;
 
 namespace NarcisKH.Controllers
 {
@@ -15,11 +17,13 @@ namespace NarcisKH.Controllers
     [ApiController]
     public class ClothesController : ControllerBase
     {
+        private readonly IConfiguration _config;
         private readonly NarcisKHContext _context;
 
-        public ClothesController(NarcisKHContext context)
+        public ClothesController(NarcisKHContext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
 
         // GET: api/Clothes
@@ -238,43 +242,225 @@ namespace NarcisKH.Controllers
 
         // PUT: api/Clothes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCloth(int id, Cloth cloth)
+        [HttpPost("EditCloth/{id}")]
+        public async Task<IActionResult> EditCloth([FromForm] UpdateClothRequest clothRequest)
         {
-            if (id != cloth.Id)
+            var category = _context.Categories.FirstOrDefault(x => x.Id == clothRequest.CategoryId);
+            if (category == null)
             {
-                return BadRequest();
+                var notFoundResponse = new
+                {
+                    StatusCode = 404,
+                    Message = "Category not found"
+                };
+                return NotFound(notFoundResponse);
+            }
+            var cloth = _context.Clothes.Include(x => x.Sizes).Include(x => x.SizeAndClothQuantities).FirstOrDefault(x => x.Id == clothRequest.ID);
+            if (cloth == null)
+            {
+                var notFoundResponse = new
+                {
+                    StatusCode = 404,
+                    Message = "Cloth not found"
+                };
+                return NotFound(notFoundResponse);
+            }
+            if (clothRequest.RemainingImages.Count > 0)
+            {
+                cloth.ImagePaths.Clear();
+                foreach (var image in clothRequest.RemainingImages)
+                {
+                    cloth.ImagePaths.Add(image);
+                }
+            }
+            if (clothRequest.Images.Count > 0)
+            {
+                
+                foreach (var image in clothRequest.Images)
+                {
+                    await using var ms = new MemoryStream();
+                    image.CopyTo(ms);
+                    var fileExt = image.FileName.Split('.').Last();
+                    var fileName = Guid.NewGuid() + "." + fileExt;
+                    if (fileExt != "jpg" && fileExt != "jpeg" && fileExt != "png")
+                    {
+                        var errorResponse = new
+                        {
+                            StatusCode = 400,
+                            Message = "Invalid file type"
+                        };
+                        return BadRequest(errorResponse);
+                    }
+                    var s3object = new Models.S3Handler.S3Object
+                    {
+                        InputStream = ms,
+                        Name = fileName,
+                        BucketName = "cloth-images"
+                    };
+                    var AccessKey = _config["AwsConfiguration:AWSAccessKey"];
+                    var SecretKey = _config["AwsConfiguration:AWSSecretKey"];
+                    var awsCredentials = new AwsCredentials
+                    {
+                        AwsKey = _config["AwsConfiguration:AWSAccessKey"],
+                        AwsSecretKey = _config["AwsConfiguration:AWSSecretKey"]
+                    };
+                    var imageUploadHelper = new ImageUploadHelper();
+                    var response = await imageUploadHelper.UploadFileAsync(s3object, awsCredentials);
+                    if (response.StatusCode != 200)
+                    {
+                        return BadRequest(response.Message);
+                    }
+                    else
+                    {
+                        cloth.ImagePaths.Add($"https://cloth-images.s3-ap-southeast-1.amazonaws.com/{fileName}");
+                    }
+                }
+            }
+            cloth.Name = clothRequest.Name;
+            cloth.Description = clothRequest.Description;
+            cloth.Price = clothRequest.Price;
+            if(clothRequest.sizeAndQuantities.Count > 0)
+            {
+                foreach (var sizeAndQuantity in clothRequest.sizeAndQuantities)
+                {
+                    var size = _context.Sizes.FirstOrDefault(x => x.Id == sizeAndQuantity.Id);
+                    if (size == null)
+                    {
+                        var notFoundResponse = new
+                        {
+                            StatusCode = 404,
+                            Message = "Size not found"
+                        };
+                        return NotFound(notFoundResponse);
+                    }
+                    if (cloth.Sizes.FirstOrDefault(x => x.Id == size.Id) == null)
+                    {
+                        cloth.Sizes.Add(size);
+                    }
+                    var sizeAndClothQuantity = _context.SizeAndClothQuantities.FirstOrDefault(x => x.ClothId == cloth.Id && x.SizeId == size.Id);
+                    if (sizeAndClothQuantity == null)
+                    {
+                        sizeAndClothQuantity = new SizeAndClothQuantity
+                        {
+                            ClothId = cloth.Id,
+                            SizeId = size.Id,
+                            Quantity = sizeAndQuantity.Quantity
+                        };
+                        _context.SizeAndClothQuantities.Add(sizeAndClothQuantity);
+                    }
+                    else
+                    {
+                        sizeAndClothQuantity.Quantity = sizeAndQuantity.Quantity;
+                    }
+                }
             }
             _context.Entry(cloth).State = EntityState.Modified;
-
-            try
+            await _context.SaveChangesAsync();
+            var successResponse = new
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ClothExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+                StatusCode = 200,
+                Message = "Cloth Updated",
+                Data = cloth
+            };
+            return Ok(successResponse);
+            
         }
 
         // POST: api/Clothes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Cloth>> PostCloth(Cloth cloth)
+        public async Task<ActionResult<Cloth>> PostCloth([FromForm]CreateClothRequest cloth)
         {
-            _context.Clothes.Add(cloth);
+            var category = _context.Categories.FirstOrDefault(x => x.Id == cloth.CategoryId);
+            if (category == null)
+            {
+                var notFoundResponse = new
+                {
+                    StatusCode = 404,
+                    Message = "Category not found"
+                };
+            }
+            var newCloth = new Cloth
+            {
+                Name = cloth.Name,
+                Description = cloth.Description,
+                Price = cloth.Price,
+                CategoryId = cloth.CategoryId,
+                ImagePaths = new List<string>(),
+                Sizes = new List<Size>()
+            };
+            if(cloth.Images.Count > 0)
+            {
+                foreach (var image in cloth.Images)
+                {
+                    await using var ms = new MemoryStream();
+                    image.CopyTo(ms);
+                    var fileExt = image.FileName.Split('.').Last();
+                    var fileName = Guid.NewGuid() + "." + fileExt;
+                    if(fileExt != "jpg" && fileExt != "jpeg" && fileExt != "png")
+                    {
+                        var errorResponse = new
+                        {
+                            StatusCode = 400,
+                            Message = "Invalid file type"
+                        };
+                        return BadRequest(errorResponse);
+                    }
+                    var s3object = new Models.S3Handler.S3Object
+                    {
+                        InputStream = ms,
+                        Name = fileName,
+                        BucketName = "cloth-images"
+                    };
+                    var AccessKey = _config["AwsConfiguration:AWSAccessKey"];
+                    var SecretKey = _config["AwsConfiguration:AWSSecretKey"];
+                    var awsCredentials = new AwsCredentials
+                    {
+                        AwsKey = _config["AwsConfiguration:AWSAccessKey"],
+                        AwsSecretKey = _config["AwsConfiguration:AWSSecretKey"]
+                    };
+                    var imageUploadHelper = new ImageUploadHelper();
+                    var response = await imageUploadHelper.UploadFileAsync(s3object, awsCredentials);
+                    if (response.StatusCode != 200)
+                    {
+                        return BadRequest(response.Message);
+                    }
+                    else
+                    {
+                        newCloth.ImagePaths.Add($"https://cloth-images.s3-ap-southeast-1.amazonaws.com/{fileName}");
+                    }
+                }
+            }
+            foreach (var sizeAndQuantity in cloth.sizeAndQuantities)
+            {
+                var size = _context.Sizes.FirstOrDefault(x => x.Id == sizeAndQuantity.Id);
+                if (size == null)
+                {
+                    var notFoundResponse = new
+                    {
+                        StatusCode = 404,
+                        Message = "Size not found"
+                    };
+                    return NotFound(notFoundResponse);
+                }
+                newCloth.Sizes.Add(size);
+                var sizeAndClothQuantity = new SizeAndClothQuantity
+                {
+                    ClothId = newCloth.Id,
+                    SizeId = size.Id,
+                    Quantity = sizeAndQuantity.Quantity
+                };
+                _context.SizeAndClothQuantities.Add(sizeAndClothQuantity);
+            }
+            _context.Clothes.Add(newCloth);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCloth", new { id = cloth.Id }, cloth);
+            var successResponse = new
+            {
+                StatusCode = 201,
+                Message = "Cloth Created",
+                Data = newCloth
+            };
+            return Ok(successResponse);
         }
 
         // DELETE: api/Clothes/5
