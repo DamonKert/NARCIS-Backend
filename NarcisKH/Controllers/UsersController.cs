@@ -222,13 +222,20 @@ namespace NarcisKH.Controllers
             var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
-                return NotFound();
+                var notFoundResponse = new
+                {
+                    StatusCode = 404,
+                    Message = "User Not Found"
+                };
             }
-
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
-
-            return NoContent();
+            var successResponse = new
+            {
+                StatusCode = 200,
+                Message = "User Deleted Successfully"
+            };
+            return Ok(successResponse);
         }
 
         private bool UserExists(int id)
