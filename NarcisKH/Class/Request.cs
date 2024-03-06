@@ -51,4 +51,43 @@ namespace NarcisKH.Class
         public string? ChatId { get; set; }
         public int RoleId { get; set; }
     }
+    public class CreateClothRequest
+    {
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public string Description { get; set; }
+        public decimal? Discount { get; set; }
+        public int CategoryId { get; set; }
+        public List<IFormFile> Images { get; set; }
+        public List<SizeAndQuantity>? sizeAndQuantities { get; set; }
+    }
+    public class UpdateClothRequest
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public string Description { get; set; }
+        public decimal? Discount { get; set; }
+        public int? CategoryId { get; set; }
+        public List<IFormFile>? Images { get; set; }
+        public List<SizeAndQuantity>? sizeAndQuantities { get; set; }
+        public List<string>? RemainingImages { get; set; } //imagePaths
+    }
+    public class  SizeAndQuantity 
+    {
+        public int Id { get; set; }
+        public int Quantity { get; set; } = 0;
+    }
+    public class CreateCategoryRequest
+    {
+        public string Name { get; set; }
+        public int? ParentId { get; set; }
+    }
+    public class UpdateCategoryRequest
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public int? ParentId { get; set; }
+    }
+
 }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NarcisKH")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e352fddc004c1b9f86c7d2346d449284696af5c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c3c0ce52727bff316455bfa05eaf908409a5468")]
 [assembly: System.Reflection.AssemblyProductAttribute("NarcisKH")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NarcisKH")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
