@@ -251,13 +251,22 @@ namespace NarcisKH.Controllers
             var model = await _context.Models.FindAsync(id);
             if (model == null)
             {
-                return NotFound();
+               var notFoundResponse = new
+               {
+                   StatusCode = 404,
+                   Message = "Model Not Found"
+               };
+                return NotFound(notFoundResponse);
             }
 
             _context.Models.Remove(model);
             await _context.SaveChangesAsync();
-
-            return NoContent();
+            var successResponse = new
+            {
+                StatusCode = 200,
+                Message = "Model Deleted Successfully"
+            };
+            return Ok(successResponse);
         }
 
         private bool ModelExists(int id)
