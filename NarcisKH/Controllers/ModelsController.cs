@@ -101,7 +101,7 @@ namespace NarcisKH.Controllers
             }
             if(model.Profile != null)
             {
-                if (modelToUpdate != null)
+                if (modelToUpdate.ProfilePicture != null)
                 {
                     var oldFileName = modelToUpdate.ProfilePicture.Split("/").Last();
                     var credentials = new AwsCredentials
@@ -111,10 +111,11 @@ namespace NarcisKH.Controllers
                     };
 
                     var deleteResponse = await new ImageUploadHelper().DeleteFileAsync(oldFileName, "narciskh-model-images", credentials);
-                    if(deleteResponse.StatusCode != 200)
+                    if (deleteResponse.StatusCode != 200)
                     {
                         return BadRequest(deleteResponse.Message);
                     }
+                }
                     await using var memoryStream = new MemoryStream();
                     await model.Profile.CopyToAsync(memoryStream);
                     var fileExtension = model.Profile.FileName.Split(".")[1];
@@ -149,7 +150,7 @@ namespace NarcisKH.Controllers
                         modelToUpdate.ProfilePicture = $"https://narciskh-model-images.s3-ap-southeast-1.amazonaws.com/{fileName}";
                     }
                   
-                }
+                
             }
             modelToUpdate.Name = model.Name;
             modelToUpdate.Age = model.Age;
