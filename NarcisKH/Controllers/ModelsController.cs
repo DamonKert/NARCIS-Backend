@@ -30,7 +30,23 @@ namespace NarcisKH.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Model>>> GetModels()
         {
-            return await _context.Models.ToListAsync();
+            var models = await _context.Models.Include(x=>x.Clothes).ToListAsync();
+            if(models.Count == 0)
+            {
+                var notFoundResponse = new
+                {
+                    StatusCode = 404,
+                    Message = "No Models Found"
+                };
+                return NotFound(notFoundResponse);
+            }
+            var successResponse = new
+            {
+                StatusCode = 200,
+                Message = "Sucess",
+                Data = models
+            };
+            return Ok(successResponse);
         }
 
         // GET: api/Models/5
@@ -60,33 +76,96 @@ namespace NarcisKH.Controllers
 
         // PUT: api/Models/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutModel(int id, Model model)
+        [HttpPost("EditModel")]
+        public async Task<IActionResult> PutModel([FromForm] UpdateModelRequest model)
         {
-            if (id != model.Id)
+            if(model.ID == null)
             {
-                return BadRequest();
-            }
-
-            _context.Entry(model).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ModelExists(id))
+                var badRequestResponse = new
                 {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                    StatusCode = 400,
+                    Message = "Model Id is required"
+                };
+                return BadRequest(badRequestResponse);
             }
 
-            return NoContent();
+            var modelToUpdate = await _context.Models.FirstOrDefaultAsync(x=>x.Id == model.ID);
+            if(modelToUpdate == null)
+            {
+                var notFoundResponse = new
+                {
+                    StatusCode = 404,
+                    Message = "Model Not Found"
+                };
+                return NotFound(notFoundResponse);
+            }
+            if(model.Profile != null)
+            {
+                if (modelToUpdate != null)
+                {
+                    var oldFileName = modelToUpdate.ProfilePicture.Split("/").Last();
+                    var credentials = new AwsCredentials
+                    {
+                        AwsKey = _config["AwsConfiguration:AWSAccess"],
+                        AwsSecretKey = _config["AwsConfiguration:AWSSecret"]
+                    };
+
+                    var deleteResponse = await new ImageUploadHelper().DeleteFileAsync(oldFileName, "narciskh-model-images", credentials);
+                    if(deleteResponse.StatusCode != 200)
+                    {
+                        return BadRequest(deleteResponse.Message);
+                    }
+                    await using var memoryStream = new MemoryStream();
+                    await model.Profile.CopyToAsync(memoryStream);
+                    var fileExtension = model.Profile.FileName.Split(".")[1];
+                    if (fileExtension != "jpg" && fileExtension != "jpeg" && fileExtension != "png")
+                    {
+                        return BadRequest("Invalid file type");
+                    }
+                    var fileName = $"{Guid.NewGuid()}.{fileExtension}";
+
+                    var s3Object = new S3Object
+                    {
+                        InputStream = memoryStream,
+                        Name = fileName,
+                        BucketName = "narciskh-model-images",
+
+                    };
+                    var AccessKey = _config["AwsConfiguration:AWSAccessKey"];
+                    var SecretKey = _config["AwsConfiguration:AWSSecretKey"];
+                    var awsCredentials = new AwsCredentials
+                    {
+                        AwsKey = _config["AwsConfiguration:AWSAccess"],
+                        AwsSecretKey = _config["AwsConfiguration:AWSSecret"]
+                    };
+                    var imageUploadHelper = new ImageUploadHelper();
+                    var response = await imageUploadHelper.UploadFileAsync(s3Object, awsCredentials);
+                    if (response.StatusCode != 200)
+                    {
+                        return BadRequest(response.Message);
+                    }
+                    else
+                    {
+                        modelToUpdate.ProfilePicture = $"https://narciskh-model-images.s3-ap-southeast-1.amazonaws.com/{fileName}";
+                    }
+                  
+                }
+            }
+            modelToUpdate.Name = model.Name;
+            modelToUpdate.Age = model.Age;
+            modelToUpdate.Height = model.Height;
+            modelToUpdate.Weight = model.Weight;
+            modelToUpdate.Bottom = model.Bottom;
+            modelToUpdate.Top = model.Top;
+            _context.Entry(modelToUpdate).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            var successResponse = new
+            {
+                StatusCode = 200,
+                Message = "Model Updated Successfully",
+                Data = modelToUpdate
+            };
+            return Ok(successResponse);
         }
 
         // POST: api/Models
