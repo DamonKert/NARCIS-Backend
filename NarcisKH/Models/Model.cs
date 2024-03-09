@@ -1,4 +1,6 @@
-﻿namespace NarcisKH.Models
+﻿using System.Text.Json.Serialization;
+
+namespace NarcisKH.Models
 {
     public class Model
     {
@@ -14,6 +16,7 @@
         public string Top { get; set; } 
         public string Bottom { get; set; }
         public string? ProfilePicture { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Cloth>? Clothes { get; set; } = new List<Cloth>();
     }
 }

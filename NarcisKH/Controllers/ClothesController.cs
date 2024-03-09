@@ -40,21 +40,22 @@ namespace NarcisKH.Controllers
                     Name = cloth.Name,
                     Description = cloth.Description,
                     Price = cloth.Price,
+                    Model = cloth.Model,
                     Category = cloth.Category,
                     ImagePaths = cloth.ImagePaths,
                     Discount = cloth.Discount
                 };
                 List<SizeAndQuantityDTO> sizeAndQuantityDTOs = new List<SizeAndQuantityDTO>();
-                foreach (var sizeAndQuantity in cloth.Sizes)
-                {
-                    SizeAndQuantityDTO sizeAndQuantityDTO = new SizeAndQuantityDTO
-                    {
-                        Id = sizeAndQuantity.Id,
-                        Name = sizeAndQuantity.Name,
-                        Quantity = cloth.SizeAndClothQuantities.FirstOrDefault(x => x.SizeId == sizeAndQuantity.Id).Quantity
-                    };
-                    sizeAndQuantityDTOs.Add(sizeAndQuantityDTO);
-                }
+                //foreach (var sizeAndQuantity in cloth.Sizes)
+                //{
+                //    SizeAndQuantityDTO sizeAndQuantityDTO = new SizeAndQuantityDTO
+                //    {
+                //        Id = sizeAndQuantity.Id,
+                //        Name = sizeAndQuantity.Name,
+                //        Quantity = cloth.SizeAndClothQuantities.FirstOrDefault(x => x.SizeId == sizeAndQuantity.Id).Quantity
+                //    };
+                //    sizeAndQuantityDTOs.Add(sizeAndQuantityDTO);
+                //}
                 clothDTO.Sizes = cloth.Sizes;
                 clothDTOs.Add(clothDTO);
             }
@@ -377,7 +378,17 @@ namespace NarcisKH.Controllers
         [HttpPost]
         public async Task<ActionResult<Cloth>> PostCloth([FromForm]CreateClothRequest cloth)
         {
-           
+            var model = _context.Models.FirstOrDefault(x => x.Id == cloth.ModelId);
+            if (model == null)
+            {
+                var notFoundResponse = new
+                {
+                    StatusCode = 404,
+                    Message = "Model not found"
+                };
+                return NotFound(notFoundResponse);
+            }
+
             var category = _context.Categories.FirstOrDefault(x => x.Id == cloth.CategoryId);
             if (category == null)
             {
@@ -396,9 +407,10 @@ namespace NarcisKH.Controllers
                 CategoryId = cloth.CategoryId,
                 ImagePaths = new List<string>(),
                 //Sizes = new List<Size>(),
-               
+                Model = model,
                 Code = cloth.Code,
             };
+            
             if (cloth.SizeIDs.Count == 0)
             {
                 var errorResponse = new

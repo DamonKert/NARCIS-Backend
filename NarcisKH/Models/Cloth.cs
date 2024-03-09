@@ -17,6 +17,7 @@ namespace NarcisKH.Models
         public decimal Price { get; set; }  
         public decimal Discount { get; set; } = 0;
         public int CategoryId { get; set; }
+        public Model? Model { get; set; }
         public List<string> ImagePaths { get; set; } = new List<string>();
         public Category Category { get; set; } = default!;
         public virtual List<Size>? Sizes { get; set; } = new List<Size>();

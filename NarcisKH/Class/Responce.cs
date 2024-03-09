@@ -17,6 +17,7 @@ namespace NarcisKH.Class
         public List<string> ImagePaths { get; set; } = new List<string>();
         public decimal Discount { get; set; } = 0;
         public List<Size> Sizes { get; set; } = new List<Size>();
+        public Model Model { get; set; } = default!;
         [JsonIgnore]
         public virtual ICollection<SizeAndQuantityDTO> Size { get; set; } = new List<SizeAndQuantityDTO>();
     }
