@@ -21,6 +21,7 @@ namespace NarcisKH.Models
         public virtual DeliveryStatus? DeliveryStatus { get; set; }
         [ForeignKey("PaymentMethodId")]
         public virtual PaymentMethod? PaymentMethod { get; set; }
-
+        public string? TransactionProofImage { get; set; }
+        public List<string>? DeliveryProofImage { get; set; } = new List<string>();
     }
 }

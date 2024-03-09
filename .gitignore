@@ -266,3 +266,6 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/
+.vs/ProjectEvaluation/narciskh.metadata.v7.bin
+.vs/ProjectEvaluation/narciskh.projects.v7.bin
+NarcisKH/bin/Debug/net8.0/NarcisKH.dll

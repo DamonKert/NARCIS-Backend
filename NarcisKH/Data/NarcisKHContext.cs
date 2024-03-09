@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using NarcisKH.Class;
 using NarcisKH.Models;
 
 namespace NarcisKH.Data
@@ -240,26 +241,31 @@ namespace NarcisKH.Data
                 new Size
                 {
                     Id = 1,
-                    Name = "S"
+                    Name = "XS"
                 },
                 new Size
                 {
                     Id = 2,
-                    Name = "M"
+                    Name = "S"
                 },
                 new Size
                 {
                     Id = 3,
-                    Name = "L"
+                    Name = "M"
                 },
                 new Size
                 {
                     Id = 4,
-                    Name = "XL"
+                    Name = "L"
                 },
                 new Size
                 {
                     Id = 5,
+                    Name = "XL"
+                },
+                new Size
+                {
+                    Id = 6,
                     Name = "XXL"
                 }
             };

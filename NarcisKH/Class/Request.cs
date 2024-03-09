@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using NarcisKH.Models;
 
 namespace NarcisKH.Class
 {
@@ -55,10 +57,12 @@ namespace NarcisKH.Class
     {
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public string Code { get; set; }
         public string Description { get; set; }
         public decimal? Discount { get; set; }
         public int CategoryId { get; set; }
-        public List<IFormFile> Images { get; set; }
+        public List<IFormFile>? Images { get; set; }
+        [FromBody]
         public List<SizeAndQuantity>? sizeAndQuantities { get; set; }
     }
     public class UpdateClothRequest
@@ -66,6 +70,7 @@ namespace NarcisKH.Class
         public int ID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public string Code { get; set; }
         public string Description { get; set; }
         public decimal? Discount { get; set; }
         public int? CategoryId { get; set; }
@@ -89,5 +94,31 @@ namespace NarcisKH.Class
         public string Name { get; set; }
         public int? ParentId { get; set; }
     }
+    public class CreateOrderRequest
+    {
+        public int EmployeeId { get; set; }
+        public string FullName { get; set; }
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
+        public string? Note { get; set; }
+        public int CityProvinceId { get; set; }
+        public IFormFile? DeliveryProofImage { get; set; }
+        public IFormFile? PaymentProofImage { get; set; }
+        public int? OrderStatusId { get; set; }
+        public int? PaymentStatusId { get; set; }
+        public int? DeliveryStatusId { get; set; }
+        public int? PaymentMethodId { get; set; }
+    }
+    public class CreateOrderFromBody
+    {
+        public List<ClothSizeQuantitiesRequest> ClothSizeQuantities { get; set; }
+    }
+    public class ClothSizeQuantitiesRequest
+    {
+        public int ClothId { get; set; }
+        public string Size { get; set; }
+        public int Quantity { get; set; }
+    }
+   
 
 }
