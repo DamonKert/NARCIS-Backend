@@ -269,3 +269,4 @@ __pycache__/
 .vs/ProjectEvaluation/narciskh.metadata.v7.bin
 .vs/ProjectEvaluation/narciskh.projects.v7.bin
 NarcisKH/bin/Debug/net8.0/NarcisKH.dll
+NarcisKH/obj/Debug/net8.0/NarcisKH.sourcelink.json
