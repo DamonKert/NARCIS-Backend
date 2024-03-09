@@ -62,7 +62,8 @@ namespace NarcisKH.Class
         public decimal? Discount { get; set; }
         public int CategoryId { get; set; }
         public List<IFormFile>? Images { get; set; }
-        public List<int> SizeIDs { get; set; }  
+        public List<int> SizeIDs { get; set; }
+        public int? ModelId { get; set; }
 
     }
     public class UpdateClothRequest
