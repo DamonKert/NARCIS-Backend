@@ -1,4 +1,5 @@
 ﻿using NarcisKH.Models;
+using System.Text.Json.Serialization;
 
 namespace NarcisKH.Class
 {
@@ -11,10 +12,13 @@ namespace NarcisKH.Class
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;
         public decimal Price { get; set; }
+        public string Code { get; set; } = default!;
         public Category Category { get; set; } = default!;
         public List<string> ImagePaths { get; set; } = new List<string>();
         public decimal Discount { get; set; } = 0;
-        public virtual ICollection<SizeAndQuantityDTO> Sizes { get; set; } = new List<SizeAndQuantityDTO>();
+        public List<Size> Sizes { get; set; } = new List<Size>();
+        [JsonIgnore]
+        public virtual ICollection<SizeAndQuantityDTO> Size { get; set; } = new List<SizeAndQuantityDTO>();
     }
     public class SizeAndQuantityDTO()
     {
@@ -45,5 +49,29 @@ namespace NarcisKH.Class
         public string Name { get; set; }
         public List<Category> Children { get; set; }
         public Category Parent { get; set; }
+    }
+    public class OrderDTO
+    {
+        public int Id { get; set; }
+        public string? FullName { get; set; }
+        public string? Address { get; set; }
+        public string Phone { get; set; }
+        public string Note { get; set; }
+        public CityProvince CityProvince { get; set; }
+        public StatusDTO Status { get; set; }
+        public User Employee { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
+        public List<ClothDTO> clothes { get; set; }
+    }
+    public class StatusDTO
+    {
+        public DeliveryStatus DeliveryStatus { get; set; }
+        public OrderStatus OrderStatus { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
+        public string? TransactionProofImage { get; set; }
+        public List<string>? DeliveryProofImage { get; set; }
+
     }
 }

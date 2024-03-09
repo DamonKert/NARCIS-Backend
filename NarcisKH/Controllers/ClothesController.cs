@@ -55,10 +55,16 @@ namespace NarcisKH.Controllers
                     };
                     sizeAndQuantityDTOs.Add(sizeAndQuantityDTO);
                 }
-                clothDTO.Sizes = sizeAndQuantityDTOs;
+                clothDTO.Sizes = cloth.Sizes;
                 clothDTOs.Add(clothDTO);
             }
-            return Ok(clothDTOs);
+            var successResponse = new
+            {
+                StatusCode = 200,
+                Message = "Success",
+                Data = clothDTOs
+            };
+            return Ok(successResponse);
         }
 
         // GET: api/Clothes/5
@@ -102,7 +108,7 @@ namespace NarcisKH.Controllers
                     };
                     sizeAndQuantityDTOs.Add(sizeAndQuantityDTO);
                 }
-                clothDTO.Sizes = sizeAndQuantityDTOs;
+                clothDTO.Size = sizeAndQuantityDTOs;
                 clothDTOs.Add(clothDTO);
             }
             if(clothDTOs.Count == 0)
@@ -217,7 +223,7 @@ namespace NarcisKH.Controllers
                         };
                         sizeAndQuantityDTOs.Add(sizeAndQuantityDTO);
                     }
-                    clothDTO.Sizes = sizeAndQuantityDTOs;
+                    clothDTO.Size = sizeAndQuantityDTOs;
                     clothDTOs.Add(clothDTO);
                 }
                 if(clothDTOs.Count == 0)
@@ -387,7 +393,8 @@ namespace NarcisKH.Controllers
                 Price = cloth.Price,
                 CategoryId = cloth.CategoryId,
                 ImagePaths = new List<string>(),
-                Sizes = new List<Size>()
+                Sizes = new List<Size>(),
+                Code = cloth.Code,
             };
             if(cloth.Images.Count > 0)
             {
@@ -489,7 +496,7 @@ namespace NarcisKH.Controllers
             var size = _context.Sizes.FirstOrDefault();
             if (size == null)
             {
-                return BadRequest("Sizes not found");
+                return BadRequest("Size not found");
             }
             var cloth = new Cloth
             {
@@ -498,7 +505,8 @@ namespace NarcisKH.Controllers
                 Price = 10,
                 CategoryId = category.Id,
                 ImagePaths = new List<string> { "https://www.google.com" },
-                Sizes = new List<Size> { size }
+                Sizes = new List<Size> { size },
+                Code = "TSHIRT"
             };
             _context.Clothes.Add(cloth);
             await _context.SaveChangesAsync();

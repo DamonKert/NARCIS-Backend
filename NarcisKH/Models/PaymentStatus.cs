@@ -13,7 +13,6 @@ namespace NarcisKH.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public string? PaymentProof { get; set; } //CDN path
         [JsonIgnore]
         public ICollection<Status> Status { get; set; }
     }
