@@ -9032,19 +9032,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PC\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Coding\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj",
+      "projectUniqueName": "E:\\Document\\Work\\With Friends\\Git\\Pull backup\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj",
       "projectName": "NarcisKH",
-      "projectPath": "E:\\Coding\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj",
-      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "E:\\Coding\\NARCIS-Backend\\NarcisKH\\obj\\",
+      "projectPath": "E:\\Document\\Work\\With Friends\\Git\\Pull backup\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "E:\\Document\\Work\\With Friends\\Git\\Pull backup\\NARCIS-Backend\\NarcisKH\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9128,7 +9128,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
