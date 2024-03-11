@@ -59,7 +59,7 @@ namespace NarcisKH.Class
         public decimal Price { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
-        public decimal? Discount { get; set; }
+        public decimal Discount { get; set; }
         public int CategoryId { get; set; }
         public List<IFormFile>? Images { get; set; }
         public List<int> SizeIDs { get; set; }

@@ -31,8 +31,9 @@ namespace NarcisKH.Controllers
         public async Task<ActionResult<IEnumerable<Cloth>>> GetCloth()
         {
             List<ClothDTO> clothDTOs = new List<ClothDTO>();
-            var cloths = await _context.Clothes.Include(x=>x.Category).Include(x=>x.Sizes).Include(x=>x.SizeAndClothQuantities).ToListAsync();
-            foreach (var cloth in cloths)
+            //var cloths = await _context.Clothes.Include(x=>x.Category).Include(x=>x.Sizes).Include(x=>x.SizeAndClothQuantities).ToListAsync();
+			var cloths = await _context.Clothes.Include(x => x.Category).Include(x => x.Sizes).Include(x => x.Model).Include(x => x.SizeAndClothQuantities).ToListAsync();
+			foreach (var cloth in cloths)
             {
                 ClothDTO clothDTO = new ClothDTO
                 {
@@ -43,7 +44,8 @@ namespace NarcisKH.Controllers
                     Model = cloth.Model,
                     Category = cloth.Category,
                     ImagePaths = cloth.ImagePaths,
-                    Discount = cloth.Discount
+                    Discount = cloth.Discount,
+                    Code = cloth.Code
                 };
                 List<SizeAndQuantityDTO> sizeAndQuantityDTOs = new List<SizeAndQuantityDTO>();
                 //foreach (var sizeAndQuantity in cloth.Sizes)
@@ -409,6 +411,7 @@ namespace NarcisKH.Controllers
                 //Sizes = new List<Size>(),
                 Model = model,
                 Code = cloth.Code,
+                Discount = cloth.Discount
             };
             
             if (cloth.SizeIDs.Count == 0)
