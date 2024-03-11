@@ -64,7 +64,6 @@ namespace NarcisKH.Class
         public List<IFormFile>? Images { get; set; }
         public List<int> SizeIDs { get; set; }
         public int? ModelId { get; set; }
-
     }
     public class UpdateClothRequest
     {
@@ -76,8 +75,9 @@ namespace NarcisKH.Class
         public decimal? Discount { get; set; }
         public int? CategoryId { get; set; }
         public List<IFormFile>? Images { get; set; }
-        public List<SizeAndQuantity>? sizeAndQuantities { get; set; }
-        public List<string>? RemainingImages { get; set; } //imagePaths
+		public List<int> SizeIDs { get; set; }
+		public int? ModelId { get; set; }
+		public List<string>? RemainingImages { get; set; } //imagePaths
     }
     public class  SizeAndQuantity 
     {
@@ -109,8 +109,9 @@ namespace NarcisKH.Class
         public int? PaymentStatusId { get; set; }
         public int? DeliveryStatusId { get; set; }
         public int? PaymentMethodId { get; set; }
-    }
-    public class CreateOrderFromBody
+        public List<ClothSizeQuantitiesRequest> ClothSizeQuantities { get; set; }
+	}
+	public class CreateOrderFromBody
     {
         public List<ClothSizeQuantitiesRequest> ClothSizeQuantities { get; set; }
     }

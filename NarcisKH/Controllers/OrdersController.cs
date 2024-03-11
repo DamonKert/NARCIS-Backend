@@ -155,9 +155,9 @@ namespace NarcisKH.Controllers
         // POST: api/Orders
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder([FromForm]CreateOrderRequest createOrder, [FromBody]CreateOrderFromBody Clothes)
+        public async Task<ActionResult<Order>> PostOrder([FromForm]CreateOrderRequest createOrder)
         {
-            if(Clothes.ClothSizeQuantities.Count == 0)
+            if(createOrder.ClothSizeQuantities.Count == 0)
             {
                 var errorResponse = new
                 {
@@ -241,9 +241,9 @@ namespace NarcisKH.Controllers
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now
             };
-            if(Clothes != null)
+            if(createOrder != null)
             {
-                foreach (var clothObject in Clothes.ClothSizeQuantities)
+                foreach (var clothObject in createOrder.ClothSizeQuantities)
                 {
                    var cloth = await _context.Clothes.FindAsync(clothObject.ClothId);
                     if (cloth == null)
