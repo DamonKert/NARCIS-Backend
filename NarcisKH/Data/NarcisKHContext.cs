@@ -281,7 +281,7 @@ namespace NarcisKH.Data
                     Weight = 55,
                     Top = "S",
                     Bottom = "M",
-                    ProfilePicture = "https://narciskh-model-images.s3.ap-southeast-1.amazonaws.com/kira.png",
+                    ProfilePicture = "https://i.imgur.com/fAn4V8X.jpeg",
                 },
                 new Model
                 {
@@ -292,7 +292,7 @@ namespace NarcisKH.Data
                     Weight = 46,
                     Top = "S",
                     Bottom = "S",
-                    ProfilePicture = "https://narciskh-model-images.s3.ap-southeast-1.amazonaws.com/ari.png",
+                    ProfilePicture = "https://i.imgur.com/0uwQ2KA.jpeg",
                 },
                 new Model
                 {
@@ -303,7 +303,7 @@ namespace NarcisKH.Data
                     Weight = 49,
                     Top = "S",
                     Bottom = "S",
-                    ProfilePicture = "https://narciskh-model-images.s3.ap-southeast-1.amazonaws.com/Ho+Jeoung.png",
+                    ProfilePicture = "https://i.imgur.com/zPRC7JH.jpeg",
                 },
                 new Model
                 {
@@ -314,7 +314,7 @@ namespace NarcisKH.Data
                     Weight = 45,
                     Top = "S",
                     Bottom = "S",
-                    ProfilePicture = "https://narciskh-model-images.s3.ap-southeast-1.amazonaws.com/Seo+Young.png",
+                    ProfilePicture = "https://i.imgur.com/dCcQQL9.jpeg",
                 },
                 new Model
                 {
@@ -325,11 +325,12 @@ namespace NarcisKH.Data
                     Weight = 45,
                     Top = "S",
                     Bottom = "S",
-                    ProfilePicture = "https://narciskh-model-images.s3.ap-southeast-1.amazonaws.com/Ga+Eul.png",
+                    ProfilePicture = "https://i.imgur.com/qiCE8vf.jpeg",
                 },
 
             };
             modelBuilder.Entity<Model>().HasData(Models);
+
             List<Cloth> clothes = new List<Cloth>
             {
                 new Cloth {
@@ -797,12 +798,11 @@ namespace NarcisKH.Data
                     CategoryId = 1,
                     ModelId = 4,
                     SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
-                
+
                 }
             };
             modelBuilder.Entity<Cloth>().HasData(clothes);
             base.OnModelCreating(modelBuilder);
-
         }
 
         public DbSet<NarcisKH.Models.User> Users { get; set; } = default!;
