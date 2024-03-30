@@ -268,16 +268,15 @@ __pycache__/
 # tools/
 .vs/ProjectEvaluation/narciskh.metadata.v7.bin
 .vs/ProjectEvaluation/narciskh.projects.v7.bin
-NarcisKH/bin/Debug/net8.0/NarcisKH.dll
-NarcisKH/obj/Debug/net8.0/NarcisKH.sourcelink.json
 NarcisKH/obj/project.nuget.cache
 NarcisKH/obj/project.assets.json
-NarcisKH/obj/Debug/net8.0/refint/NarcisKH.dll
-NarcisKH/obj/Debug/net8.0/ref/NarcisKH.dll
-NarcisKH/obj/Debug/net8.0/NarcisKH.dll
+
 .vs/ProjectEvaluation/narciskh.metadata.v7.bin
 .vs/ProjectEvaluation/narciskh.projects.v7.bin
 .vs/NarcisKH/v17/.futdcache.v2
 .vs/NarcisKH/DesignTimeBuild/.dtbcache.v2
-NarcisKH/bin/Debug/net8.0/NarcisKH.exe
-NarcisKH/obj/Debug/net8.0/NarcisKH.genruntimeconfig.cache
+
+
+
+NarcisKH/bin/*
+NarcisKH/obj/Debug/*
