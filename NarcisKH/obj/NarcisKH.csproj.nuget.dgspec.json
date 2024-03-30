@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Document\\Work\\With Friends\\Git\\Pull backup\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj": {}
+    "E:\\Document\\Work\\With Friends\\Production\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj": {}
   },
   "projects": {
-    "E:\\Document\\Work\\With Friends\\Git\\Pull backup\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj": {
+    "E:\\Document\\Work\\With Friends\\Production\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Document\\Work\\With Friends\\Git\\Pull backup\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj",
+        "projectUniqueName": "E:\\Document\\Work\\With Friends\\Production\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj",
         "projectName": "NarcisKH",
-        "projectPath": "E:\\Document\\Work\\With Friends\\Git\\Pull backup\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj",
+        "projectPath": "E:\\Document\\Work\\With Friends\\Production\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "E:\\Document\\Work\\With Friends\\Git\\Pull backup\\NARCIS-Backend\\NarcisKH\\obj\\",
+        "outputPath": "E:\\Document\\Work\\With Friends\\Production\\NARCIS-Backend\\NarcisKH\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

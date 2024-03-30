@@ -330,6 +330,478 @@ namespace NarcisKH.Data
 
             };
             modelBuilder.Entity<Model>().HasData(Models);
+
+            List<Cloth> clothes = new List<Cloth>
+            {
+                new Cloth {
+                    Id = 1,
+                    Name= "Wrap style pleated skirt dress",
+                    Price = 10,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(1_2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(1).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(4).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(5).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(6).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(7).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(8).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(9).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(10).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(11).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(12).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(13).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(14).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/C1/C1-030/C1-030+(15).jpg",
+                    },
+                    CategoryId = 3,
+                    Description= "\tFormal fabric with a smooth surface, wrap-style dress. The waist size can be adjusted with the strap inserted into the waist of the right layer to create a dress fit, skirt pleated detail from the left body waist cut, long sleeves with a slim silhouette, and a pleated line at the back. Emphasis on lines with darts.",
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+                    ModelId = 1,
+                    Code = "C1-030"
+                },
+                new Cloth
+                {
+                    Id = 2,
+                    Name = "V-neck raglan short sleeve top",
+                    Price = 10,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005-1.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005-2.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005-3.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005-4.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005-5.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005-6.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005-7.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005_B3-014+(1)_c.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005_B3-014+(1).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005_B3-014+(2)_c.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005_B3-014+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005_B3-014+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005_B3-014+(4).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005_B3-014+(5).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-005/A3-005_B3-014+(5)_c.jpg",
+                    },
+                    CategoryId = 1,
+                    Description = "Soft and drapery white fabric, V-neck neatly finished with inner hem, raglan sleeves, a silhouette with side seams gathered toward the center of the front, double layer point at the front cut, and short length at the center of the front.",
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+                    ModelId = 2,
+                    Code = "A3-005"
+                },
+                new Cloth
+                {
+                    Id = 3,
+                    Name = "Linen short sleeve top",
+                    Price = 10,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-001/A3-001+(1).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-001/A3-001+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-001/A3-001+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-001/A3-001+(4).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-001/A3-001+(5).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-001/A3-001+(6).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-001/A3-001+(7).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-001/A3-001+(8).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-001/A3-001+(9).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-001/A3-001+(10).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-001/A3-001+(11).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-001/A3-001+(12).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-001/A3-001+(13).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-001/A3-001+(14).jpg",
+
+                    },
+                    CategoryId = 1,
+                    Description = "\tLinen fabric with a natural mood, basic round neck shape and 1/4\" spaced inbinding for a neat finish, back neck keyhole opening, and a straight silhouette for plenty of room.",
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+                    ModelId = 4,
+                    Code = "A3-001"
+                },
+                new Cloth
+                {
+                    Id = 4,
+                    Name = "Cropped Asymmetric Frilled Top",
+                    Price = 10,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-002/A3-002_crop.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-002/A3-002_rsz+(1).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-002/A3-002_rsz+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-002/A3-002_rsz+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-002/A3-002_rsz+(4).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-002/A3-002-P+(1).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-002/A3-002-P+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-002/A3-002-P+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-002/A3-002-P+(4).jpg",
+                    },
+                    CategoryId = 1,
+                    Description = "Fitted long-sleeve top with a cropped asymmetric cut, frilled edges and a ribbed finish.",
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+                    ModelId = 5,
+                    Code = "A3-002"
+
+                },
+                new Cloth
+                {
+                    Id = 5,
+                    Name = "Round crop top",
+                    Price = 10,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006+(1).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006+(4).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006+(5).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006+(6).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006+(7).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006+(8).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006+(9).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006+(10).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006+(11).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006+(12).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006+(13).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006_crop.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-1.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-2.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-3.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-rsz+(1).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-rsz+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-rsz+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-rsz+(4).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-rsz+(5).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-rsz+(6).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-rsz+(7).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-rsz+(8).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-rsz+(9).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-rsz+(10).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-rsz+(11).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-rsz+(12).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-006/A3-006-rsz+(13).jpg",
+
+
+                    },
+                    CategoryId = 1,
+                    Description = "\tSoft cotton fabric, cropped length, basic round neck shape, half-length short sleeves, and finished with a fabric neckband.",
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+                    ModelId = 3,
+                    Code = "A3-006"
+
+                },
+                new Cloth
+                {
+                    Id = 6,
+                    Name = "V-neck shoulder detail top",
+                    Price = 10,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011-1.jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011-2.jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011-3.jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011-4.jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011-5.jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011-6.jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011-7.jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011-8.jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011-9.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011-10.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011+(1).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011+(4).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-011/A3-011+(5).jpg",
+                    },
+                    CategoryId = 1,
+                    Description = "Light fabric with a twill texture, two shoulder slits, chin details, V-neck shaped inner hem, volume created by pleats in the center of the sleeves, a clean scooty finish that holds the pleats at the end of the sleeves, and a sense of leisure with the pleat details in the center of the back.",
+                    ModelId = 2,
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+                    Code = "A3-011"
+
+                },
+                new Cloth
+                {
+                    Id = 7,
+                    Name = "Cowl neck side shirring top",
+                    Price = 10,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(1).jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(2).jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(3).jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(4).jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(5).jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(6).jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(7).jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(8).jpg",
+                       "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(9).jpg",
+                            "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(10).jpg",
+                            "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(11).jpg",
+                            "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(12).jpg",
+                            "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(13).jpg",
+                            "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(14).jpg",
+                            "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(15).jpg",
+                            "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(16).jpg",
+                            "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(17).jpg",
+                            "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-012/A3-012+(18).jpg",
+                    },
+                    CategoryId = 1,
+                    Description = "\tStretchy and comfortable fabric, drapery cowl neck, shirring details on both lower side seams, relatively short length and fitted silhouette.",
+                    ModelId = 5,
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+                    Code = "A3-012"
+                },
+                new Cloth
+                {
+                    Id = 8,
+                    Name = "Linen V-neck basic top",
+                    Price = 14,
+                    Discount = 10,
+                    ImagePaths = new List<string>
+                    {
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-013/A3-013-1.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-013/A3-013-2.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-013/A3-013-3.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-013/A3-013-4.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-013/A3-013-5.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-013/A3-013-6.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-013/A3-013-7.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-013/A3-013-8.jpg",
+
+                    },
+                    CategoryId = 1,
+                    Description = "\tCourtyard linen fabric, V-neck shape with neat 1/4\" gap inbinding finish, features a front center incision, and a straight box silhouette.",
+                    ModelId = 4,
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+                    Code = "A3-013"
+                },
+                new Cloth
+                {
+                    Id = 9,
+                    Name = "Boxy-Fit Curved-Hem T-Shirt",
+                    Description = "A boxy-fit T-shirt with a curved hem, short sleeves, and a round neckline.",
+                    Code = "A3-015",
+                    Price = 13,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-015/A3-015+(1).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-015/A3-015+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-015/A3-015+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-015/A3-015+(4).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-015/A3-015+(5).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-015/A3-015+(6).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-015/A3-015+(7).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-015/A3-015+(8).jpg",
+                    },
+                    CategoryId = 1,
+                    ModelId = 3,
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+                },
+                new Cloth
+                {
+                    Id = 10,
+                    Name = "Camisole tank top",
+                    Description = "\tThick cotton fabric, camisole-style tank top, length adjustable with shoulder straps, features a princess line and chest slit, and a fitted line that highlights the silhouette.",
+                    Code = "A3-016",
+                    Price = 10,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-016BK/A3-016-1.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-016BK/A3-016-2.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-016BK/A3-016-3.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-016BK/A3-016-4.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-016BK/A3-016-5.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-016BK/A3-016-6.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-016BK/A3-016-7.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-016BK/A3-016-8.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-016BK/A3-016-7_2.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-016BK/A3-016-8_2.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-016BK/A3-016-9.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-016BK/A3-016+(1).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-016BK/A3-016+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-016BK/A3-016+(3).jpg",
+
+                    },
+                    CategoryId = 1,
+                    ModelId = 1,
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+
+                },
+                new Cloth
+                {
+                    Id = 11,
+                    Name = "V-neck lip trim detail setup",
+                    Description = "Combination of soft cotton fabric and ribbed fabric, neckband finished with ribs, ribbed trim that highlights the shoulder and arm lines, high ribbed cuffs, cropped length with differences in front and back length, waist elastic band pants, front Side seam crossed over, pocket located on the side seam line.",
+                    Code = "A3-018",
+                    Price = 10,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-018/A3-018+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-018/A3-018+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-018/A3-018+(4).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-018/A3-018+(5).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-018/A3-018+(6).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-018/A3-018+(7).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-018/A3-018+(8).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-018/A3-018+(9).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-018/A3-018p+(1).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-018/A3-018p+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-018/A3-018p+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-018/A3-018p+(4).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-018/A3-018p+(5).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-018/A3-018p+(6).jpg",
+                    },
+                    CategoryId = 1,
+                    ModelId = 5,
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+                },
+                new Cloth
+                {
+                    Id = 12,
+                    Name = "Sleeveless crop top",
+                    Description = "\tLightweight fabric with crinkled texture, wide shoulder width with shoulder pad inserts, back keyhole button opening, 1/4\" binding at center back, 1/4\" binding strap ribbon tie at hem.",
+                    Code = "A3-019",
+                    Price = 10,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-019/A3-019+(1).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-019/A3-019+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-019/A3-019+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-019/A3-019+(3)_2.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-019/A3-019+(4).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-019/A3-019+(5).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-019/A3-019+(6).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-019/A3-019+(7).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-019/A3-019+(8).jpg",
+                    },
+                    CategoryId = 1,
+                    ModelId = 2,
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+                    },
+                new Cloth
+                {
+                    Id = 13,
+                    Name = "U-Neck Satin Sleeveless Top",
+                    Description = "\tSatin fabric with a soft touch and luster, neat inner hem finish with U-neck shape, and shirttail finish at the bottom.",
+                    Code = "A3-020",
+                    Price = 10,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-020/A3-020_ari-1_crop.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-020/A3-020_ari-2_crop.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-020/A3-020_ari-4_crop2.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-020/A3-020_ari-4_crop.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-020/A3-020_ari-5_crop.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-020/A3-020_ari-1_rsz.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-020/A3-020_ari-5_rsz.jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-020/A3-020_ari-7_rsz.jpg"
+                    },
+                    CategoryId = 1,
+                    ModelId = 2,
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+
+
+                },
+                new Cloth
+                {
+                    Id = 14,
+                    Name = "Asymmetric V-neck blouse",
+                    Description = "\tFabric with a sense of surface, V-neck shape and drapery asymmetrical layer at the center front slit, left side seam slit, 3/4 sleeves, pleated details on both sides based on the cuff opening.",
+                    Code = "A3-023",
+                    Price = 10,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-023/A3-023+(0).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-023/A3-023+(1).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-023/A3-023+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-023/A3-023+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-023/A3-023+(4).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-023/A3-023+(5).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-023/A3-023+(6).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-023/A3-023+(7).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-023/A3-023+(8).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-023/A3-023+(9).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-023/A3-023+(10).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-023/A3-023+(11).jpg",
+                    },
+                    CategoryId = 1,
+                    ModelId = 1,
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+                },
+                new Cloth
+                {
+                    Id=15,
+                    Name = "High-neck halter sleeveless top",
+                    Description = "Dry textured cotton fabric, high neck halter style, shirring detail on the neck cut line, back neck keyhole and pearl button opening, armhole edge 1/4\" inbinding finish, cropped length.",
+                    Code = "A3-024",
+                    Price = 10,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-024/A3-024+(1).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-024/A3-024+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-024/A3-024+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-024/A3-024+(4).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-024/A3-024+(5).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-024/A3-024+(6).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-024/A3-024+(7).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-024/A3-024+(8).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-024/A3-024+(5-2).jpg",
+                    },
+                    CategoryId = 1,
+                    ModelId = 1,
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+                },
+                new Cloth
+                {
+                    Id = 16,
+                    Name = "Basic t-shirt",
+                    Description = "Soft cotton fabric, basic round neck shape, short sleeves, and a clean finish.",
+                    Code = "A3-028",
+                    Price = 8,
+                    Discount = 0,
+                    ImagePaths = new List<string>
+                    {
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(2).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(3).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(4).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(5).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(6).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(7).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(8).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(9).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(10).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(11).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(12).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(13).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(14).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(15).jpg",
+                        "https://cloth-images.s3.ap-southeast-1.amazonaws.com/A3/A3-028/A3-028+(16).jpg",
+
+                    },
+
+                    CategoryId = 1,
+                    ModelId = 4,
+                    SizeIds = new List<int> { 1, 2, 3, 4, 5, 6 },
+
+                }
+            };
+            modelBuilder.Entity<Cloth>().HasData(clothes);
             base.OnModelCreating(modelBuilder);
         }
 

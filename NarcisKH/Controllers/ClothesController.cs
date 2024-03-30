@@ -58,6 +58,20 @@ namespace NarcisKH.Controllers
 				//    };
 				//    sizeAndQuantityDTOs.Add(sizeAndQuantityDTO);
 				//}
+				foreach(var sizeId in cloth.SizeIds)
+				{
+                    var Size = _context.Sizes.FirstOrDefault(x => x.Id == sizeId);
+					if (Size == null)
+					{
+                        var notFoundResponse = new
+						{
+                            StatusCode = 404,
+                            Message = "Size not found"
+                        };
+                        return NotFound(notFoundResponse);
+                    }
+					cloth.Sizes.Add(Size);
+                }
 				clothDTO.Sizes = cloth.Sizes;
 				clothDTOs.Add(clothDTO);
 			}
@@ -96,8 +110,32 @@ namespace NarcisKH.Controllers
 				ImagePaths = cloth.ImagePaths,
 				Discount = cloth.Discount,
 				Model = cloth.Model,
-				Sizes = cloth.Sizes
+				
 			};
+			foreach(var sizeID in cloth.SizeIds)
+			{
+                var size = _context.Sizes.FirstOrDefault(x => x.Id == sizeID);
+                if (size == null)
+				{
+                    var notFoundResponse = new
+					{
+                        StatusCode = 404,
+                        Message = "Size not found"
+                    };
+                    return NotFound(notFoundResponse);
+                }
+                cloth.Sizes.Add(size);
+            }
+			if(cloth.Sizes.Count == 0)
+			{
+                var notFoundResponse = new
+				{
+                    StatusCode = 404,
+                    Message = "Size not found"
+                };
+                return NotFound(notFoundResponse);
+            }
+			clothDTO.Sizes = cloth.Sizes;
 			var successResponse = new
 			{
 				StatusCode = 200,
