@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cAfAoEDGUK+40n2+S2Y83pbISkuX5CgYD6XIK669xcO14ZVUaX2lHwTP3t0C4oMk26zgJd67a63XDcCazi1zQg==",
+  "dgSpecHash": "zDFa75Sw3x9ZIjdAKq1OXyUHXnUkLDMOlHiatgFU5dL90NoYZRUvv3Tils7HZYTQbJAYbSGg1Q0jW9iGTIZoOQ==",
   "success": true,
-  "projectFilePath": "E:\\Coding\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj",
+  "projectFilePath": "D:\\Final\\Backend\\NarcisKH\\NarcisKH.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\awssdk.core\\3.7.302.15\\awssdk.core.3.7.302.15.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\awssdk.s3\\3.7.305.30\\awssdk.s3.3.7.305.30.nupkg.sha512",

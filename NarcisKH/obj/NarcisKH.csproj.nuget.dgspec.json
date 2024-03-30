@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Coding\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj": {}
+    "D:\\Final\\Backend\\NarcisKH\\NarcisKH.csproj": {}
   },
   "projects": {
-    "E:\\Coding\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj": {
+    "D:\\Final\\Backend\\NarcisKH\\NarcisKH.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Coding\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj",
+        "projectUniqueName": "D:\\Final\\Backend\\NarcisKH\\NarcisKH.csproj",
         "projectName": "NarcisKH",
-        "projectPath": "E:\\Coding\\NARCIS-Backend\\NarcisKH\\NarcisKH.csproj",
+        "projectPath": "D:\\Final\\Backend\\NarcisKH\\NarcisKH.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "E:\\Coding\\NARCIS-Backend\\NarcisKH\\obj\\",
+        "outputPath": "D:\\Final\\Backend\\NarcisKH\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -34,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -98,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
